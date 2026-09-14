@@ -1,0 +1,377 @@
+{
+  "source_deployment": "D:\\HCMUTE\\HK I nam 4\\DiDong\\ECG_NAS_LOCAL\\artifacts\\final_w4a4_p99_9\\deployment_model",
+  "seed": 42,
+  "vectors_per_case": 339,
+  "cases": [
+    {
+      "index": 0,
+      "name": "stem_conv_preact",
+      "source_layer": "stem_conv",
+      "stage": "preactivation",
+      "multiplier": 12041293,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 1,
+      "name": "block1_b1_sepconv_depthwise",
+      "source_layer": "block1_b1_sepconv",
+      "stage": "depthwise",
+      "multiplier": 8985879,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 2,
+      "name": "block1_b1_sepconv_preact",
+      "source_layer": "block1_b1_sepconv",
+      "stage": "preactivation",
+      "multiplier": 23682354,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 3,
+      "name": "block1_b2_sepconv_depthwise",
+      "source_layer": "block1_b2_sepconv",
+      "stage": "depthwise",
+      "multiplier": 8844752,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 4,
+      "name": "block1_b2_sepconv_preact",
+      "source_layer": "block1_b2_sepconv",
+      "stage": "preactivation",
+      "multiplier": 17086023,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 5,
+      "name": "block1_b3_sepconv_depthwise",
+      "source_layer": "block1_b3_sepconv",
+      "stage": "depthwise",
+      "multiplier": 13157584,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 6,
+      "name": "block1_b3_sepconv_preact",
+      "source_layer": "block1_b3_sepconv",
+      "stage": "preactivation",
+      "multiplier": 13557784,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 7,
+      "name": "block1_pool_proj_preact",
+      "source_layer": "block1_pool_proj",
+      "stage": "preactivation",
+      "multiplier": 15225046,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 8,
+      "name": "block1_out_proj_output",
+      "source_layer": "block1_out_proj",
+      "stage": "output",
+      "multiplier": 10968513,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 9,
+      "name": "block2_b1_sepconv_depthwise",
+      "source_layer": "block2_b1_sepconv",
+      "stage": "depthwise",
+      "multiplier": 13227844,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 10,
+      "name": "block2_b1_sepconv_preact",
+      "source_layer": "block2_b1_sepconv",
+      "stage": "preactivation",
+      "multiplier": 21858528,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 11,
+      "name": "block2_b2_sepconv_depthwise",
+      "source_layer": "block2_b2_sepconv",
+      "stage": "depthwise",
+      "multiplier": 13635100,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 12,
+      "name": "block2_b2_sepconv_preact",
+      "source_layer": "block2_b2_sepconv",
+      "stage": "preactivation",
+      "multiplier": 22233547,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 13,
+      "name": "block2_b3_sepconv_depthwise",
+      "source_layer": "block2_b3_sepconv",
+      "stage": "depthwise",
+      "multiplier": 30062743,
+      "shift": 31,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 14,
+      "name": "block2_b3_sepconv_preact",
+      "source_layer": "block2_b3_sepconv",
+      "stage": "preactivation",
+      "multiplier": 1340472676,
+      "shift": 30,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 15,
+      "name": "block2_pool_proj_preact",
+      "source_layer": "block2_pool_proj",
+      "stage": "preactivation",
+      "multiplier": 19106935,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 16,
+      "name": "block2_shortcut_output",
+      "source_layer": "block2_shortcut",
+      "stage": "output",
+      "multiplier": 15777803,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 17,
+      "name": "block2_out_proj_output",
+      "source_layer": "block2_out_proj",
+      "stage": "output",
+      "multiplier": 16017137,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 18,
+      "name": "block3_b1_sepconv_depthwise",
+      "source_layer": "block3_b1_sepconv",
+      "stage": "depthwise",
+      "multiplier": 27387110,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 19,
+      "name": "block3_b1_sepconv_preact",
+      "source_layer": "block3_b1_sepconv",
+      "stage": "preactivation",
+      "multiplier": 13364162,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 20,
+      "name": "block3_b2_sepconv_depthwise",
+      "source_layer": "block3_b2_sepconv",
+      "stage": "depthwise",
+      "multiplier": 25722278,
+      "shift": 31,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 21,
+      "name": "block3_b2_sepconv_preact",
+      "source_layer": "block3_b2_sepconv",
+      "stage": "preactivation",
+      "multiplier": 1110464962,
+      "shift": 29,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 22,
+      "name": "block3_b3_sepconv_depthwise",
+      "source_layer": "block3_b3_sepconv",
+      "stage": "depthwise",
+      "multiplier": 22482287,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 23,
+      "name": "block3_b3_sepconv_preact",
+      "source_layer": "block3_b3_sepconv",
+      "stage": "preactivation",
+      "multiplier": 17763453,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 24,
+      "name": "block3_pool_proj_preact",
+      "source_layer": "block3_pool_proj",
+      "stage": "preactivation",
+      "multiplier": 20580379,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 25,
+      "name": "block3_shortcut_output",
+      "source_layer": "block3_shortcut",
+      "stage": "output",
+      "multiplier": 16292727,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 26,
+      "name": "block3_out_proj_output",
+      "source_layer": "block3_out_proj",
+      "stage": "output",
+      "multiplier": 14163753,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 27,
+      "name": "block4_b1_sepconv_depthwise",
+      "source_layer": "block4_b1_sepconv",
+      "stage": "depthwise",
+      "multiplier": 40096913,
+      "shift": 31,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 28,
+      "name": "block4_b1_sepconv_preact",
+      "source_layer": "block4_b1_sepconv",
+      "stage": "preactivation",
+      "multiplier": 1290016406,
+      "shift": 30,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 29,
+      "name": "block4_b2_sepconv_depthwise",
+      "source_layer": "block4_b2_sepconv",
+      "stage": "depthwise",
+      "multiplier": 44366889,
+      "shift": 31,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 30,
+      "name": "block4_b2_sepconv_preact",
+      "source_layer": "block4_b2_sepconv",
+      "stage": "preactivation",
+      "multiplier": 1125600898,
+      "shift": 30,
+      "output_bits": 4,
+      "num_vectors": 339
+    },
+    {
+      "index": 31,
+      "name": "block4_b3_sepconv_depthwise",
+      "source_layer": "block4_b3_sepconv",
+      "stage": "depthwise",
+      "multiplier": 16967417,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 32,
+      "name": "block4_b3_sepconv_preact",
+      "source_layer": "block4_b3_sepconv",
+      "stage": "preactivation",
+      "multiplier": 16148627,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 33,
+      "name": "block4_pool_proj_preact",
+      "source_layer": "block4_pool_proj",
+      "stage": "preactivation",
+      "multiplier": 8471394,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 34,
+      "name": "block4_shortcut_output",
+      "source_layer": "block4_shortcut",
+      "stage": "output",
+      "multiplier": 9622929,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 35,
+      "name": "block4_out_proj_output",
+      "source_layer": "block4_out_proj",
+      "stage": "output",
+      "multiplier": 14994362,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    },
+    {
+      "index": 36,
+      "name": "head_dense_preact",
+      "source_layer": "head_dense",
+      "stage": "preactivation",
+      "multiplier": 56789534,
+      "shift": 31,
+      "output_bits": 8,
+      "num_vectors": 339
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "index": 36,
+  "name": "head_dense_preact",
+  "source_layer": "head_dense",
+  "stage": "preactivation",
+  "multiplier": 56789534,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

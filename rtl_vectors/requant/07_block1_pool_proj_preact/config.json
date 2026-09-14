@@ -1,0 +1,10 @@
+{
+  "index": 7,
+  "name": "block1_pool_proj_preact",
+  "source_layer": "block1_pool_proj",
+  "stage": "preactivation",
+  "multiplier": 15225046,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

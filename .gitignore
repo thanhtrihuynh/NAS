@@ -1,0 +1,102 @@
+# =========================================================
+# Python
+# =========================================================
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# =========================================================
+# IDE / OS
+# =========================================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================================================
+# ECG datasets - large files
+# =========================================================
+datasets/
+*.dat
+*.atr
+*.hea
+
+# Nếu muốn giữ CSV split trên GitHub thì mở dòng dưới:
+!datasets/splits/
+!datasets/splits/*.csv
+
+# =========================================================
+# Trained models / checkpoints
+# =========================================================
+*.keras
+*.h5
+*.weights.h5
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.npz
+*.npy
+
+# =========================================================
+# NAS candidate checkpoints
+# =========================================================
+artifacts/dashboard_nas_jobs/
+artifacts/nas_runs/
+
+# =========================================================
+# Test outputs
+# =========================================================
+artifacts/test_runs/
+*.log
+
+# =========================================================
+# Large deployment artifacts
+# =========================================================
+artifacts/final_w4a4_p99_9/deployment_model/
+
+# Có thể giữ các file JSON cấu hình nếu cần
+!artifacts/final_w4a4_p99_9/*.json
+
+# =========================================================
+# Vivado generated files
+# =========================================================
+*.jou
+*.str
+*.log
+*.cache/
+*.hw/
+*.runs/
+*.sim/
+*.gen/
+*.ip_user_files/
+.Xil/
+
+# Vivado project temp/generated
+*.xpr.zip
+*.dcp
+*.wdb
+*.vcd
+
+# =========================================================
+# Temporary / archives
+# =========================================================
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
+
+# =========================================================
+# Dashboard runtime files
+# =========================================================
+dashboard_full/__pycache__/
+dashboard_full/**/__pycache__/

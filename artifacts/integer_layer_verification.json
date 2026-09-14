@@ -1,0 +1,262 @@
+[
+  {
+    "layer": "stem_conv",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "__input__",
+    "mae": 0.016645032912492752,
+    "max_error": 0.11705946922302246,
+    "relative_rmse": 0.020733586697171895
+  },
+  {
+    "layer": "block1_b1_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "stem_act",
+    "mae": 0.03680410236120224,
+    "max_error": 0.21567612886428833,
+    "relative_rmse": 0.04340101913393315
+  },
+  {
+    "layer": "block1_b2_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "stem_act",
+    "mae": 0.03723561391234398,
+    "max_error": 0.19686853885650635,
+    "relative_rmse": 0.04721030489665775
+  },
+  {
+    "layer": "block1_b3_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "stem_act",
+    "mae": 0.05457814782857895,
+    "max_error": 0.33415675163269043,
+    "relative_rmse": 0.06048212675698619
+  },
+  {
+    "layer": "block1_pool_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "stem_act",
+    "mae": 0.023237312212586403,
+    "max_error": 0.15352582931518555,
+    "relative_rmse": 0.02831038107036927
+  },
+  {
+    "layer": "block1_out_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "block1_concat",
+    "mae": 0.05311459302902222,
+    "max_error": 0.26230138540267944,
+    "relative_rmse": 0.06344368576942679
+  },
+  {
+    "layer": "block2_b1_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "pool1",
+    "mae": 0.048772845417261124,
+    "max_error": 0.2898105978965759,
+    "relative_rmse": 0.053467400089364917
+  },
+  {
+    "layer": "block2_b2_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "pool1",
+    "mae": 0.042286861687898636,
+    "max_error": 0.2684614062309265,
+    "relative_rmse": 0.05103971647642356
+  },
+  {
+    "layer": "block2_b3_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 4,
+    "input_source": "pool1",
+    "mae": 0.2597918212413788,
+    "max_error": 1.9550546407699585,
+    "relative_rmse": 0.3354561235807016
+  },
+  {
+    "layer": "block2_pool_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool1",
+    "mae": 0.024591339752078056,
+    "max_error": 0.13998734951019287,
+    "relative_rmse": 0.030524240239919335
+  },
+  {
+    "layer": "block2_shortcut",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool1",
+    "mae": 0.03001636452972889,
+    "max_error": 0.19152900576591492,
+    "relative_rmse": 0.03786942968346108
+  },
+  {
+    "layer": "block2_out_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "block2_concat",
+    "mae": 0.042326029390096664,
+    "max_error": 0.30653923749923706,
+    "relative_rmse": 0.055293441403001416
+  },
+  {
+    "layer": "block3_b1_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "pool2",
+    "mae": 0.03563562408089638,
+    "max_error": 0.23082901537418365,
+    "relative_rmse": 0.04554262729044394
+  },
+  {
+    "layer": "block3_b2_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 4,
+    "input_source": "pool2",
+    "mae": 0.3536819517612457,
+    "max_error": 3.2692086696624756,
+    "relative_rmse": 0.527782810771307
+  },
+  {
+    "layer": "block3_b3_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "pool2",
+    "mae": 0.03662876412272453,
+    "max_error": 0.1976999044418335,
+    "relative_rmse": 0.043002167967689325
+  },
+  {
+    "layer": "block3_pool_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool2",
+    "mae": 0.024399947375059128,
+    "max_error": 0.24898719787597656,
+    "relative_rmse": 0.0325697010008393
+  },
+  {
+    "layer": "block3_shortcut",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool2",
+    "mae": 0.024575110524892807,
+    "max_error": 0.12704366445541382,
+    "relative_rmse": 0.03905419253725813
+  },
+  {
+    "layer": "block3_out_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "block3_concat",
+    "mae": 0.0338352769613266,
+    "max_error": 0.2026757001876831,
+    "relative_rmse": 0.0396098245250044
+  },
+  {
+    "layer": "block4_b1_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 4,
+    "input_source": "pool3",
+    "mae": 0.23951557278633118,
+    "max_error": 1.8550865650177002,
+    "relative_rmse": 0.3511957212241201
+  },
+  {
+    "layer": "block4_b2_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 4,
+    "input_source": "pool3",
+    "mae": 0.213240385055542,
+    "max_error": 1.2079529762268066,
+    "relative_rmse": 0.28459880231194346
+  },
+  {
+    "layer": "block4_b3_sepconv",
+    "status": "OK",
+    "type": "SeparableConv1D",
+    "bits": 8,
+    "input_source": "pool3",
+    "mae": 0.026508323848247528,
+    "max_error": 0.16657352447509766,
+    "relative_rmse": 0.030564523164873177
+  },
+  {
+    "layer": "block4_pool_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool3",
+    "mae": 0.01291658729314804,
+    "max_error": 0.08506941795349121,
+    "relative_rmse": 0.01705250484039628
+  },
+  {
+    "layer": "block4_shortcut",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "pool3",
+    "mae": 0.012219137512147427,
+    "max_error": 0.06271648406982422,
+    "relative_rmse": 0.01832967774444967
+  },
+  {
+    "layer": "block4_out_proj",
+    "status": "OK",
+    "type": "Conv1D",
+    "bits": 8,
+    "input_source": "block4_concat",
+    "mae": 0.021063238382339478,
+    "max_error": 0.13112246990203857,
+    "relative_rmse": 0.026091623332547675
+  },
+  {
+    "layer": "head_dense",
+    "status": "OK",
+    "type": "Dense",
+    "bits": 8,
+    "input_source": "head_concat",
+    "mae": 0.03951685130596161,
+    "max_error": 0.21108582615852356,
+    "relative_rmse": 0.0531558900922036
+  },
+  {
+    "layer": "class_output",
+    "status": "OK",
+    "type": "Dense",
+    "bits": 8,
+    "input_source": "head_act",
+    "mae": 2.252296209335327,
+    "max_error": 5.608561992645264,
+    "relative_rmse": 5.562749631851443
+  }
+]

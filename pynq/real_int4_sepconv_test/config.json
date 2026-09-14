@@ -1,0 +1,24 @@
+{
+  "layer": "block2_b3_sepconv",
+  "input_shape": [
+    160,
+    8
+  ],
+  "input_bits": 8,
+  "input_scale": 0.1295149495282511,
+  "weight_bits": 4,
+  "kernel_size": 9,
+  "dilation": 2,
+  "cin": 8,
+  "cout": 6,
+  "depthwise_output_bits": 4,
+  "depthwise_output_scale": 0.5173078945704869,
+  "depthwise_multiplier": 30062743,
+  "depthwise_shift": 31,
+  "pointwise_output_bits": 8,
+  "preactivation_scale": 0.08500865125280666,
+  "pointwise_multiplier": 1340472676,
+  "pointwise_shift": 30,
+  "activation_output_bits": 4,
+  "activation_scale": 0.9107819284711566
+}

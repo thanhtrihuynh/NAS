@@ -1,0 +1,811 @@
+{
+  "samples": 64,
+  "records": [
+    {
+      "name": "stem_act",
+      "shape": [
+        64,
+        320,
+        8
+      ],
+      "scale": 0.08835287169208676,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.034443095854248894,
+      "rmse": 0.04302219694197781,
+      "relative_rmse": 0.05809389583454809,
+      "cosine_similarity": 0.9983359261253012,
+      "max_error": 0.1889634132385254
+    },
+    {
+      "name": "block1_b1_act",
+      "shape": [
+        64,
+        320,
+        4
+      ],
+      "scale": 0.08154068593903789,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.043273332905664576,
+      "rmse": 0.05811857657538488,
+      "relative_rmse": 0.08375861402756764,
+      "cosine_similarity": 0.9964895416112365,
+      "max_error": 0.4027143716812134
+    },
+    {
+      "name": "block1_b2_act",
+      "shape": [
+        64,
+        320,
+        4
+      ],
+      "scale": 0.11397432342289,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.06041378894733498,
+      "rmse": 0.07422204710241818,
+      "relative_rmse": 0.09612688326241733,
+      "cosine_similarity": 0.995394960413716,
+      "max_error": 0.3996603488922119
+    },
+    {
+      "name": "block1_b3_act",
+      "shape": [
+        64,
+        320,
+        4
+      ],
+      "scale": 0.11430939351479838,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.06511136925373648,
+      "rmse": 0.08570597278896316,
+      "relative_rmse": 0.13423545228479744,
+      "cosine_similarity": 0.9910490189600476,
+      "max_error": 0.5508800446987152
+    },
+    {
+      "name": "block1_pool_act",
+      "shape": [
+        64,
+        320,
+        4
+      ],
+      "scale": 0.08968286439189761,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.03817219761763226,
+      "rmse": 0.052654845726770164,
+      "relative_rmse": 0.076971103160196,
+      "cosine_similarity": 0.9970548954777813,
+      "max_error": 0.372467577457428
+    },
+    {
+      "name": "block1_concat",
+      "shape": [
+        64,
+        320,
+        16
+      ],
+      "scale": 0.11430939351479838,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.05676448967345778,
+      "rmse": 0.07330980537865436,
+      "relative_rmse": 0.10490845307675352,
+      "cosine_similarity": 0.9945451457517326,
+      "max_error": 0.5508800446987152
+    },
+    {
+      "name": "block1_out_bn",
+      "shape": [
+        64,
+        320,
+        8
+      ],
+      "scale": 0.18146641047920767,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.10127581549240858,
+      "rmse": 0.13288309227199205,
+      "relative_rmse": 0.13080342270755166,
+      "cosine_similarity": 0.9914533996338536,
+      "max_error": 0.8370264023542404
+    },
+    {
+      "name": "block1_add",
+      "shape": [
+        64,
+        320,
+        8
+      ],
+      "scale": 0.13842063062772977,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.11656135457969867,
+      "rmse": 0.15186126617235046,
+      "relative_rmse": 0.11964793663560397,
+      "cosine_similarity": 0.9928973878272154,
+      "max_error": 0.9447667002677917
+    },
+    {
+      "name": "block1_act",
+      "shape": [
+        64,
+        320,
+        8
+      ],
+      "scale": 0.1295149495282511,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.07955418185595052,
+      "rmse": 0.11359491851292158,
+      "relative_rmse": 0.10329031841261284,
+      "cosine_similarity": 0.9946883284398395,
+      "max_error": 0.8507578372955322
+    },
+    {
+      "name": "pool1",
+      "shape": [
+        64,
+        160,
+        8
+      ],
+      "scale": 0.1295149495282511,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.08003013544054818,
+      "rmse": 0.1130400586591602,
+      "relative_rmse": 0.09574707631135376,
+      "cosine_similarity": 0.9954636792054451,
+      "max_error": 0.8507578372955322
+    },
+    {
+      "name": "block2_b1_act",
+      "shape": [
+        64,
+        160,
+        6
+      ],
+      "scale": 0.10121217111902912,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.06082610988202456,
+      "rmse": 0.08164186675548428,
+      "relative_rmse": 0.15063762808523795,
+      "cosine_similarity": 0.9885890503536052,
+      "max_error": 0.7177780866622925
+    },
+    {
+      "name": "block2_b2_act",
+      "shape": [
+        64,
+        160,
+        6
+      ],
+      "scale": 0.06607644388994832,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.05699715861107203,
+      "rmse": 0.07789099955252748,
+      "relative_rmse": 0.12237465634930034,
+      "cosine_similarity": 0.9925267681587348,
+      "max_error": 0.5902601480484009
+    },
+    {
+      "name": "block2_b3_act",
+      "shape": [
+        64,
+        160,
+        6
+      ],
+      "scale": 0.6019578661237445,
+      "bits": 4,
+      "saturation_rate": 0.005126953125,
+      "mae": 0.1255985310524314,
+      "rmse": 0.30197655021189124,
+      "relative_rmse": 0.43051740694046664,
+      "cosine_similarity": 0.9026198292385168,
+      "max_error": 4.70170783996582
+    },
+    {
+      "name": "block2_pool_act",
+      "shape": [
+        64,
+        160,
+        6
+      ],
+      "scale": 0.056148934552050014,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.04200992014799946,
+      "rmse": 0.06230707965092919,
+      "relative_rmse": 0.101504096601085,
+      "cosine_similarity": 0.9948553608291166,
+      "max_error": 0.7993800640106201
+    },
+    {
+      "name": "block2_concat",
+      "shape": [
+        64,
+        160,
+        24
+      ],
+      "scale": 0.10121217111902912,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.07446822734497498,
+      "rmse": 0.16518725016027,
+      "relative_rmse": 0.2638641300333152,
+      "cosine_similarity": 0.9645678999336768,
+      "max_error": 4.664501667022705
+    },
+    {
+      "name": "block2_out_bn",
+      "shape": [
+        64,
+        160,
+        12
+      ],
+      "scale": 0.1083716445081816,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.22026325318341453,
+      "rmse": 0.30899997128776385,
+      "relative_rmse": 0.31366532965439115,
+      "cosine_similarity": 0.9496024698968535,
+      "max_error": 5.451369285583496
+    },
+    {
+      "name": "block2_shortcut_bn",
+      "shape": [
+        64,
+        160,
+        12
+      ],
+      "scale": 0.09906955779068113,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.07280480452391203,
+      "rmse": 0.09532316364435467,
+      "relative_rmse": 0.0966160163988811,
+      "cosine_similarity": 0.995322589236688,
+      "max_error": 0.7572843432426453
+    },
+    {
+      "name": "block2_add",
+      "shape": [
+        64,
+        160,
+        12
+      ],
+      "scale": 0.1573393213467335,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.24306061942431068,
+      "rmse": 0.3300621635491036,
+      "relative_rmse": 0.2349508978735709,
+      "cosine_similarity": 0.972036647246185,
+      "max_error": 5.429514408111572
+    },
+    {
+      "name": "block2_act",
+      "shape": [
+        64,
+        160,
+        12
+      ],
+      "scale": 0.11962907145342488,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.14030310329642295,
+      "rmse": 0.21232113674869266,
+      "relative_rmse": 0.23347529833140454,
+      "cosine_similarity": 0.972512195551997,
+      "max_error": 4.4293423891067505
+    },
+    {
+      "name": "pool2",
+      "shape": [
+        64,
+        80,
+        12
+      ],
+      "scale": 0.11962907145342488,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.1456359773225859,
+      "rmse": 0.21772910934085676,
+      "relative_rmse": 0.21296166144068304,
+      "cosine_similarity": 0.9771916192484844,
+      "max_error": 4.100531101226807
+    },
+    {
+      "name": "block3_b1_act",
+      "shape": [
+        64,
+        80,
+        12
+      ],
+      "scale": 0.052853955997256785,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.10250991228798133,
+      "rmse": 0.15956852453566417,
+      "relative_rmse": 0.2848492780517491,
+      "cosine_similarity": 0.9589671838027954,
+      "max_error": 1.790522038936615
+    },
+    {
+      "name": "block3_b2_act",
+      "shape": [
+        64,
+        80,
+        12
+      ],
+      "scale": 0.5299745968409947,
+      "bits": 4,
+      "saturation_rate": 0.004296875,
+      "mae": 0.1639630685938755,
+      "rmse": 0.34126168288030784,
+      "relative_rmse": 0.5273826875743978,
+      "cosine_similarity": 0.8502478968269397,
+      "max_error": 5.2519859075546265
+    },
+    {
+      "name": "block3_b3_act",
+      "shape": [
+        64,
+        80,
+        12
+      ],
+      "scale": 0.07643183760755644,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.11574628576345276,
+      "rmse": 0.1752462240229871,
+      "relative_rmse": 0.21874090567627263,
+      "cosine_similarity": 0.9758422241652834,
+      "max_error": 2.0120021253824234
+    },
+    {
+      "name": "block3_pool_act",
+      "shape": [
+        64,
+        80,
+        12
+      ],
+      "scale": 0.06122518899872547,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.09707109721863769,
+      "rmse": 0.1546661662774991,
+      "relative_rmse": 0.25491869023209845,
+      "cosine_similarity": 0.9682384313713767,
+      "max_error": 2.3203577399253845
+    },
+    {
+      "name": "block3_concat",
+      "shape": [
+        64,
+        80,
+        48
+      ],
+      "scale": 0.07643183760755644,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.1191985994479334,
+      "rmse": 0.2222097124842067,
+      "relative_rmse": 0.33667157124957686,
+      "cosine_similarity": 0.941657990666049,
+      "max_error": 5.24693763256073
+    },
+    {
+      "name": "block3_out_bn",
+      "shape": [
+        64,
+        80,
+        24
+      ],
+      "scale": 0.07722961245559332,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.2915000327125502,
+      "rmse": 0.38216411328682903,
+      "relative_rmse": 0.3544138256951175,
+      "cosine_similarity": 0.93536450059645,
+      "max_error": 3.365190267562866
+    },
+    {
+      "name": "block3_shortcut_bn",
+      "shape": [
+        64,
+        80,
+        24
+      ],
+      "scale": 0.07479720979224978,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.12381621697010511,
+      "rmse": 0.1672443317197318,
+      "relative_rmse": 0.21188569038036512,
+      "cosine_similarity": 0.977296637750046,
+      "max_error": 2.171025276184082
+    },
+    {
+      "name": "block3_add",
+      "shape": [
+        64,
+        80,
+        24
+      ],
+      "scale": 0.10656032412070927,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.320396438096274,
+      "rmse": 0.4162629901492481,
+      "relative_rmse": 0.3054210087935066,
+      "cosine_similarity": 0.9522926588899128,
+      "max_error": 3.5998197495937347
+    },
+    {
+      "name": "block3_act",
+      "shape": [
+        64,
+        80,
+        24
+      ],
+      "scale": 0.07676310051144578,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.1505072433793036,
+      "rmse": 0.25560813019790796,
+      "relative_rmse": 0.34514505461670103,
+      "cosine_similarity": 0.9386169196492941,
+      "max_error": 3.718894213438034
+    },
+    {
+      "name": "pool3",
+      "shape": [
+        64,
+        40,
+        24
+      ],
+      "scale": 0.07676310051144578,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.16974911558310318,
+      "rmse": 0.27472183019574936,
+      "relative_rmse": 0.3033991332777783,
+      "cosine_similarity": 0.9528640115367795,
+      "max_error": 2.994921326637268
+    },
+    {
+      "name": "block4_b1_act",
+      "shape": [
+        64,
+        40,
+        14
+      ],
+      "scale": 0.3436382157461984,
+      "bits": 4,
+      "saturation_rate": 0.004436383928571428,
+      "mae": 0.12401456138218886,
+      "rmse": 0.2516894706749165,
+      "relative_rmse": 0.4562071946342175,
+      "cosine_similarity": 0.8899692594585199,
+      "max_error": 2.4678664207458496
+    },
+    {
+      "name": "block4_b2_act",
+      "shape": [
+        64,
+        40,
+        14
+      ],
+      "scale": 0.3766684191567557,
+      "bits": 4,
+      "saturation_rate": 0.0056919642857142854,
+      "mae": 0.14755763846416292,
+      "rmse": 0.2822209956766103,
+      "relative_rmse": 0.49752105425791493,
+      "cosine_similarity": 0.8685342899575162,
+      "max_error": 3.2977168560028076
+    },
+    {
+      "name": "block4_b3_act",
+      "shape": [
+        64,
+        40,
+        14
+      ],
+      "scale": 0.05162078376830093,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.1332088255545906,
+      "rmse": 0.2063594166581322,
+      "relative_rmse": 0.2768863119230639,
+      "cosine_similarity": 0.9614584041983945,
+      "max_error": 1.6317172348499298
+    },
+    {
+      "name": "block4_pool_act",
+      "shape": [
+        64,
+        40,
+        14
+      ],
+      "scale": 0.038376834448866956,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.08817146604612519,
+      "rmse": 0.14372207617154156,
+      "relative_rmse": 0.2653317828731272,
+      "cosine_similarity": 0.9642268082708603,
+      "max_error": 1.6428900957107544
+    },
+    {
+      "name": "block4_concat",
+      "shape": [
+        64,
+        40,
+        56
+      ],
+      "scale": 0.05543019452432948,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.12355574424940902,
+      "rmse": 0.22743325335224182,
+      "relative_rmse": 0.374530297267232,
+      "cosine_similarity": 0.927242852747048,
+      "max_error": 3.2737464904785156
+    },
+    {
+      "name": "block4_out_bn",
+      "shape": [
+        64,
+        40,
+        28
+      ],
+      "scale": 0.060566932197630874,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.2437156601262229,
+      "rmse": 0.32025196717151777,
+      "relative_rmse": 0.31436590456565416,
+      "cosine_similarity": 0.9496478800455342,
+      "max_error": 2.6431429386138916
+    },
+    {
+      "name": "block4_shortcut_bn",
+      "shape": [
+        64,
+        40,
+        28
+      ],
+      "scale": 0.04297171990702471,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.09617532436734888,
+      "rmse": 0.1337377370287169,
+      "relative_rmse": 0.1617354851515379,
+      "cosine_similarity": 0.9869771528998829,
+      "max_error": 1.604766607284546
+    },
+    {
+      "name": "block4_add",
+      "shape": [
+        64,
+        40,
+        28
+      ],
+      "scale": 0.07114382616178257,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.26269849469141004,
+      "rmse": 0.3440337263450614,
+      "relative_rmse": 0.22141864484639184,
+      "cosine_similarity": 0.9754389032306134,
+      "max_error": 2.6104326248168945
+    },
+    {
+      "name": "block4_act",
+      "shape": [
+        64,
+        40,
+        28
+      ],
+      "scale": 0.03961013058039147,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.04064805290179452,
+      "rmse": 0.08925683151717193,
+      "relative_rmse": 0.394317546615603,
+      "cosine_similarity": 0.9190381379799014,
+      "max_error": 1.7385016679763794
+    },
+    {
+      "name": "gap",
+      "shape": [
+        64,
+        28
+      ],
+      "scale": 0.03961013058039147,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.015258682253066322,
+      "rmse": 0.020681121625476202,
+      "relative_rmse": 0.171678541823096,
+      "cosine_similarity": 0.9853247004024173,
+      "max_error": 0.11377221345901489
+    },
+    {
+      "name": "gmp",
+      "shape": [
+        64,
+        28
+      ],
+      "scale": 0.03961013058039147,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.13153550254396065,
+      "rmse": 0.2302674048550308,
+      "relative_rmse": 0.2712103179227651,
+      "cosine_similarity": 0.9646570550958067,
+      "max_error": 1.7385016679763794
+    },
+    {
+      "name": "head_concat",
+      "shape": [
+        64,
+        56
+      ],
+      "scale": 0.03961013058039147,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.07339709239851347,
+      "rmse": 0.163479030047218,
+      "relative_rmse": 0.26960183005686306,
+      "cosine_similarity": 0.9649885252152063,
+      "max_error": 1.7385016679763794
+    },
+    {
+      "name": "head_act",
+      "shape": [
+        64,
+        24
+      ],
+      "scale": 0.03304336953350878,
+      "bits": 8,
+      "saturation_rate": 0.0,
+      "mae": 0.06371117965803326,
+      "rmse": 0.12431343872859513,
+      "relative_rmse": 0.2676472930098027,
+      "cosine_similarity": 0.9652743227669556,
+      "max_error": 1.4852309226989746
+    }
+  ],
+  "main_path_growth": [
+    {
+      "name": "block4_act",
+      "delta": 0.17289890176921113,
+      "relative_rmse": 0.394317546615603
+    },
+    {
+      "name": "block2_concat",
+      "delta": 0.16811705372196145,
+      "relative_rmse": 0.2638641300333152
+    },
+    {
+      "name": "block3_concat",
+      "delta": 0.12370990980889382,
+      "relative_rmse": 0.33667157124957686
+    },
+    {
+      "name": "gmp",
+      "delta": 0.09953177609966912,
+      "relative_rmse": 0.2712103179227651
+    },
+    {
+      "name": "block4_concat",
+      "delta": 0.07113116398945374,
+      "relative_rmse": 0.374530297267232
+    },
+    {
+      "name": "stem_act",
+      "delta": 0.05809389583454809,
+      "relative_rmse": 0.05809389583454809
+    },
+    {
+      "name": "block2_out_bn",
+      "delta": 0.04980119962107593,
+      "relative_rmse": 0.31366532965439115
+    },
+    {
+      "name": "block1_concat",
+      "delta": 0.04681455724220543,
+      "relative_rmse": 0.10490845307675352
+    },
+    {
+      "name": "block3_act",
+      "delta": 0.03972404582319444,
+      "relative_rmse": 0.34514505461670103
+    },
+    {
+      "name": "block1_out_bn",
+      "delta": 0.02589496963079814,
+      "relative_rmse": 0.13080342270755166
+    },
+    {
+      "name": "block3_out_bn",
+      "delta": 0.017742254445540617,
+      "relative_rmse": 0.3544138256951175
+    },
+    {
+      "name": "block2_act",
+      "delta": -0.0014755995421663615,
+      "relative_rmse": 0.23347529833140454
+    },
+    {
+      "name": "head_concat",
+      "delta": -0.001608487865902064,
+      "relative_rmse": 0.26960183005686306
+    },
+    {
+      "name": "head_act",
+      "delta": -0.001954537047060334,
+      "relative_rmse": 0.2676472930098027
+    },
+    {
+      "name": "pool1",
+      "delta": -0.007543242101259076,
+      "relative_rmse": 0.09574707631135376
+    },
+    {
+      "name": "block1_add",
+      "delta": -0.01115548607194769,
+      "relative_rmse": 0.11964793663560397
+    },
+    {
+      "name": "block1_act",
+      "delta": -0.01635761822299113,
+      "relative_rmse": 0.10329031841261284
+    },
+    {
+      "name": "pool2",
+      "delta": -0.0205136368907215,
+      "relative_rmse": 0.21296166144068304
+    },
+    {
+      "name": "pool3",
+      "delta": -0.04174592133892274,
+      "relative_rmse": 0.3033991332777783
+    },
+    {
+      "name": "block3_add",
+      "delta": -0.04899281690161089,
+      "relative_rmse": 0.3054210087935066
+    },
+    {
+      "name": "block4_out_bn",
+      "delta": -0.06016439270157786,
+      "relative_rmse": 0.31436590456565416
+    },
+    {
+      "name": "block2_add",
+      "delta": -0.07871443178082024,
+      "relative_rmse": 0.2349508978735709
+    },
+    {
+      "name": "block4_add",
+      "delta": -0.09294725971926232,
+      "relative_rmse": 0.22141864484639184
+    },
+    {
+      "name": "gap",
+      "delta": -0.22263900479250698,
+      "relative_rmse": 0.171678541823096
+    }
+  ]
+}

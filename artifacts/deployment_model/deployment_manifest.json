@@ -1,0 +1,1582 @@
+{
+  "format_version": 2,
+  "quantization": "symmetric_per_tensor",
+  "weight_precision": "layer_wise_int4_int8",
+  "accumulator_bits": 32,
+  "softmax": "PS_ARM_float",
+  "layers": {
+    "stem_conv": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.06354774264838751,
+      "weight_scale": 0.008201397310091755,
+      "accumulator_scale": 0.0005211802856188885,
+      "kernel_file": "stem_conv_kernel.npy",
+      "bias_file": "stem_conv_bias_int32.npy",
+      "kernel_shape": [
+        7,
+        1,
+        8
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "__input__",
+      "bn_name": "stem_bn",
+      "activation_name": "stem_act",
+      "preactivation_scale": 0.09294899617593119,
+      "output_scale": 0.08835287169208676,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 12041293,
+        "shift": 31,
+        "real_multiplier": 0.005607164219744916,
+        "approx_multiplier": 0.00560716399922967,
+        "error": 2.2051524668775802e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block1_b1_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.08835287169208676,
+      "depthwise_scale": 0.0028121971239255168,
+      "depthwise_acc_scale": 0.0002484656916630466,
+      "depthwise_output_scale": 0.0593793899055541,
+      "depthwise_requant": {
+        "multiplier": 8985879,
+        "shift": 31,
+        "real_multiplier": 0.004184375960383624,
+        "approx_multiplier": 0.004184375982731581,
+        "error": 2.2347956818435932e-11
+      },
+      "pointwise_scale": 0.016420446981595258,
+      "pointwise_acc_scale": 0.0009750361237436238,
+      "depthwise_file": "block1_b1_sepconv_depthwise.npy",
+      "pointwise_file": "block1_b1_sepconv_pointwise.npy",
+      "bias_file": "block1_b1_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        3,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        4
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "stem_act",
+      "bn_name": "block1_b1_bn",
+      "activation_name": "block1_b1_act",
+      "preactivation_scale": 0.08841495063361221,
+      "output_scale": 0.08154068593903789,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 23682354,
+        "shift": 31,
+        "real_multiplier": 0.011027955303443328,
+        "approx_multiplier": 0.011027955450117588,
+        "error": 1.466742595435111e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block1_b2_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.08835287169208676,
+      "depthwise_scale": 0.001998711054719339,
+      "depthwise_acc_scale": 0.00017659186136717318,
+      "depthwise_output_scale": 0.04287605961476724,
+      "depthwise_requant": {
+        "multiplier": 8844752,
+        "shift": 31,
+        "real_multiplier": 0.004118658826249788,
+        "approx_multiplier": 0.004118658602237701,
+        "error": 2.2401208665812078e-10
+      },
+      "pointwise_scale": 0.02114965408805787,
+      "pointwise_acc_scale": 0.0009068138295112749,
+      "depthwise_file": "block1_b2_sepconv_depthwise.npy",
+      "pointwise_file": "block1_b2_sepconv_pointwise.npy",
+      "bias_file": "block1_b2_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        5,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        4
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "stem_act",
+      "bn_name": "block1_b2_bn",
+      "activation_name": "block1_b2_act",
+      "preactivation_scale": 0.11397432342289,
+      "output_scale": 0.11397432342289,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 17086023,
+        "shift": 31,
+        "real_multiplier": 0.007956299298629179,
+        "approx_multiplier": 0.007956299465149641,
+        "error": 1.665204623496619e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block1_b3_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.08835287169208676,
+      "depthwise_scale": 0.003304275940722368,
+      "depthwise_acc_scale": 0.0002919422682258927,
+      "depthwise_output_scale": 0.04764865890262634,
+      "depthwise_requant": {
+        "multiplier": 13157584,
+        "shift": 31,
+        "real_multiplier": 0.006126977651616574,
+        "approx_multiplier": 0.006126977503299713,
+        "error": 1.4831686052929616e-10
+      },
+      "pointwise_scale": 0.02295448648647999,
+      "pointwise_acc_scale": 0.0010937504968792308,
+      "depthwise_file": "block1_b3_sepconv_depthwise.npy",
+      "pointwise_file": "block1_b3_sepconv_pointwise.npy",
+      "bias_file": "block1_b3_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        7,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        4
+      ],
+      "stride": 1,
+      "dilation": 2,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "stem_act",
+      "bn_name": "block1_b3_bn",
+      "activation_name": "block1_b3_act",
+      "preactivation_scale": 0.17324449133685255,
+      "output_scale": 0.11430939351479838,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 13557784,
+        "shift": 31,
+        "real_multiplier": 0.006313334920142239,
+        "approx_multiplier": 0.00631333515048027,
+        "error": 2.3033803163430289e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block1_pool_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.08835287169208676,
+      "weight_scale": 0.00905760911505992,
+      "accumulator_scale": 0.0008002657759799646,
+      "kernel_file": "block1_pool_proj_kernel.npy",
+      "bias_file": "block1_pool_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        8,
+        4
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "stem_act",
+      "bn_name": "block1_pool_bn",
+      "activation_name": "block1_pool_act",
+      "preactivation_scale": 0.11287701223778912,
+      "output_scale": 0.08968286439189761,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 15225046,
+        "shift": 31,
+        "real_multiplier": 0.007089714372436681,
+        "approx_multiplier": 0.007089714519679546,
+        "error": 1.472428654697433e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block1_out_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.11430939351479838,
+      "weight_scale": 0.008108344603711225,
+      "accumulator_scale": 0.0009268599540592184,
+      "kernel_file": "block1_out_proj_kernel.npy",
+      "bias_file": "block1_out_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        16,
+        8
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "block1_concat",
+      "bn_name": "block1_out_bn",
+      "activation_name": null,
+      "output_scale": 0.18146641047920767,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 10968513,
+        "shift": 31,
+        "real_multiplier": 0.005107611659984962,
+        "approx_multiplier": 0.005107611883431673,
+        "error": 2.2344671078700085e-10
+      },
+      "output_mode": "REQUANT"
+    },
+    "block2_b1_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.1295149495282511,
+      "depthwise_scale": 0.0028143963945193554,
+      "depthwise_acc_scale": 0.0003645064069886662,
+      "depthwise_output_scale": 0.05917605077187846,
+      "depthwise_requant": {
+        "multiplier": 13227844,
+        "shift": 31,
+        "real_multiplier": 0.006159694711528237,
+        "approx_multiplier": 0.006159694865345955,
+        "error": 1.5381771811123768e-10
+      },
+      "pointwise_scale": 0.018987937236395407,
+      "pointwise_acc_scale": 0.001123631137954176,
+      "depthwise_file": "block2_b1_sepconv_depthwise.npy",
+      "pointwise_file": "block2_b1_sepconv_pointwise.npy",
+      "bias_file": "block2_b1_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        3,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        6
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool1",
+      "bn_name": "block2_b1_bn",
+      "activation_name": "block2_b1_act",
+      "preactivation_scale": 0.11039076076717827,
+      "output_scale": 0.10121217111902912,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 21858528,
+        "shift": 31,
+        "real_multiplier": 0.010178670118271869,
+        "approx_multiplier": 0.010178670287132263,
+        "error": 1.68860394417214e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block2_b2_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.1295149495282511,
+      "depthwise_scale": 0.0030448401537467177,
+      "depthwise_acc_scale": 0.00039435231883409844,
+      "depthwise_output_scale": 0.06210920003455455,
+      "depthwise_requant": {
+        "multiplier": 13635100,
+        "shift": 31,
+        "real_multiplier": 0.006349338239982159,
+        "approx_multiplier": 0.0063493382185697556,
+        "error": 2.141240310060688e-11
+      },
+      "pointwise_scale": 0.015926702754704033,
+      "pointwise_acc_scale": 0.0009891947672828038,
+      "depthwise_file": "block2_b2_sepconv_depthwise.npy",
+      "pointwise_file": "block2_b2_sepconv_pointwise.npy",
+      "bias_file": "block2_b2_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        5,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        6
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool1",
+      "bn_name": "block2_b2_bn",
+      "activation_name": "block2_b2_act",
+      "preactivation_scale": 0.0955438914261465,
+      "output_scale": 0.06607644388994832,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 22233547,
+        "shift": 31,
+        "real_multiplier": 0.010353302053302187,
+        "approx_multiplier": 0.010353302117437124,
+        "error": 6.413493694457095e-11
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block2_b3_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 4,
+      "input_scale": 0.1295149495282511,
+      "depthwise_scale": 0.0559149512222835,
+      "depthwise_acc_scale": 0.0072418220854286695,
+      "depthwise_output_scale": 0.5173078945704869,
+      "depthwise_requant": {
+        "multiplier": 30062743,
+        "shift": 31,
+        "real_multiplier": 0.01399905580687387,
+        "approx_multiplier": 0.013999055605381727,
+        "error": 2.014921424153826e-10
+      },
+      "pointwise_scale": 0.20515028067997523,
+      "pointwise_acc_scale": 0.10612585976910242,
+      "depthwise_file": "block2_b3_sepconv_depthwise.npy",
+      "pointwise_file": "block2_b3_sepconv_pointwise.npy",
+      "bias_file": "block2_b3_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        9,
+        8,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        8,
+        6
+      ],
+      "stride": 1,
+      "dilation": 2,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool1",
+      "bn_name": "block2_b3_bn",
+      "activation_name": "block2_b3_act",
+      "preactivation_scale": 0.08500865125280666,
+      "output_scale": 0.9107819284711566,
+      "output_bits": 4,
+      "acc_to_preact": {
+        "multiplier": 1340472676,
+        "shift": 30,
+        "real_multiplier": 1.2484124639678784,
+        "approx_multiplier": 1.2484124638140202,
+        "error": 1.53858259466233e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block2_pool_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.1295149495282511,
+      "weight_scale": 0.007652817748662994,
+      "accumulator_scale": 0.000991154304466992,
+      "kernel_file": "block2_pool_proj_kernel.npy",
+      "bias_file": "block2_pool_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        8,
+        6
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool1",
+      "bn_name": "block2_pool_bn",
+      "activation_name": "block2_pool_act",
+      "preactivation_scale": 0.11139869689941406,
+      "output_scale": 0.056148934552050014,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 19106935,
+        "shift": 31,
+        "real_multiplier": 0.008897359951723145,
+        "approx_multiplier": 0.008897359948605299,
+        "error": 3.117846258948731e-12
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block2_shortcut": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.1295149495282511,
+      "weight_scale": 0.005620008847844882,
+      "accumulator_scale": 0.0007278751622769545,
+      "kernel_file": "block2_shortcut_kernel.npy",
+      "bias_file": "block2_shortcut_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        8,
+        12
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool1",
+      "bn_name": "block2_shortcut_bn",
+      "activation_name": null,
+      "output_scale": 0.09906955779068113,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 15777803,
+        "shift": 31,
+        "real_multiplier": 0.0073471122563688405,
+        "approx_multiplier": 0.00734711205586791,
+        "error": 2.0050093009482683e-10
+      },
+      "output_mode": "REQUANT"
+    },
+    "block2_out_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.10121217111902912,
+      "weight_scale": 0.007986158836544969,
+      "accumulator_scale": 0.0008082964747481359,
+      "kernel_file": "block2_out_proj_kernel.npy",
+      "bias_file": "block2_out_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        24,
+        12
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "block2_concat",
+      "bn_name": "block2_out_bn",
+      "activation_name": null,
+      "output_scale": 0.1083716445081816,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 16017137,
+        "shift": 31,
+        "real_multiplier": 0.0074585605710459895,
+        "approx_multiplier": 0.007458560634404421,
+        "error": 6.335843134863683e-11
+      },
+      "output_mode": "REQUANT"
+    },
+    "block3_b1_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.11962907145342488,
+      "depthwise_scale": 0.0027874626043274645,
+      "depthwise_acc_scale": 0.00033346156306684007,
+      "depthwise_output_scale": 0.02614745568102739,
+      "depthwise_requant": {
+        "multiplier": 27387110,
+        "shift": 31,
+        "real_multiplier": 0.012753117057917034,
+        "approx_multiplier": 0.012753116898238659,
+        "error": 1.5967837468933155e-10
+      },
+      "pointwise_scale": 0.022857519585316576,
+      "pointwise_acc_scale": 0.0005976659803352808,
+      "depthwise_file": "block3_b1_sepconv_depthwise.npy",
+      "pointwise_file": "block3_b1_sepconv_pointwise.npy",
+      "bias_file": "block3_b1_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        3,
+        12,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        12,
+        12
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool2",
+      "bn_name": "block3_b1_bn",
+      "activation_name": "block3_b1_act",
+      "preactivation_scale": 0.09603878832238866,
+      "output_scale": 0.052853955997256785,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 13364162,
+        "shift": 31,
+        "real_multiplier": 0.006223172853128889,
+        "approx_multiplier": 0.006223172880709171,
+        "error": 2.7580282675743195e-11
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block3_b2_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 4,
+      "input_scale": 0.11962907145342488,
+      "depthwise_scale": 0.047591486147471836,
+      "depthwise_acc_scale": 0.005693325296910589,
+      "depthwise_output_scale": 0.4753203732626779,
+      "depthwise_requant": {
+        "multiplier": 25722278,
+        "shift": 31,
+        "real_multiplier": 0.011977869279683216,
+        "approx_multiplier": 0.01197786908596754,
+        "error": 1.9371567544501644e-10
+      },
+      "pointwise_scale": 0.44219040870666504,
+      "pointwise_acc_scale": 0.21018211011962812,
+      "depthwise_file": "block3_b2_sepconv_depthwise.npy",
+      "pointwise_file": "block3_b2_sepconv_pointwise.npy",
+      "bias_file": "block3_b2_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        5,
+        12,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        12,
+        12
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool2",
+      "bn_name": "block3_b2_bn",
+      "activation_name": "block3_b2_act",
+      "preactivation_scale": 0.10161568799356777,
+      "output_scale": 0.7236631257193429,
+      "output_bits": 4,
+      "acc_to_preact": {
+        "multiplier": 1110464962,
+        "shift": 29,
+        "real_multiplier": 2.0684021755866335,
+        "approx_multiplier": 2.068402174860239,
+        "error": 7.263945001056982e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block3_b3_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.11962907145342488,
+      "depthwise_scale": 0.003222089114151602,
+      "depthwise_acc_scale": 0.00038545552886614444,
+      "depthwise_output_scale": 0.03681829407459169,
+      "depthwise_requant": {
+        "multiplier": 22482287,
+        "shift": 31,
+        "real_multiplier": 0.010469130592667719,
+        "approx_multiplier": 0.010469130706042051,
+        "error": 1.1337433249158924e-10
+      },
+      "pointwise_scale": 0.01717149742006317,
+      "pointwise_acc_scale": 0.0006322252417129782,
+      "depthwise_file": "block3_b3_sepconv_depthwise.npy",
+      "pointwise_file": "block3_b3_sepconv_pointwise.npy",
+      "bias_file": "block3_b3_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        9,
+        12,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        12,
+        12
+      ],
+      "stride": 1,
+      "dilation": 2,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool2",
+      "bn_name": "block3_b3_bn",
+      "activation_name": "block3_b3_act",
+      "preactivation_scale": 0.07643183760755644,
+      "output_scale": 0.07643183760755644,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 17763453,
+        "shift": 31,
+        "real_multiplier": 0.008271752472564826,
+        "approx_multiplier": 0.008271752391010523,
+        "error": 8.155430324119362e-11
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block3_pool_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.11962907145342488,
+      "weight_scale": 0.007574392585303839,
+      "accumulator_scale": 0.0009061175518036047,
+      "kernel_file": "block3_pool_proj_kernel.npy",
+      "bias_file": "block3_pool_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        12,
+        12
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool2",
+      "bn_name": "block3_pool_bn",
+      "activation_name": "block3_pool_act",
+      "preactivation_scale": 0.09454989245557409,
+      "output_scale": 0.06122518899872547,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 20580379,
+        "shift": 31,
+        "real_multiplier": 0.009583485800677772,
+        "approx_multiplier": 0.009583485778421164,
+        "error": 2.225660801491447e-11
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block3_shortcut": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.11962907145342488,
+      "weight_scale": 0.004743649264958899,
+      "accumulator_scale": 0.0005674783568677546,
+      "kernel_file": "block3_shortcut_kernel.npy",
+      "bias_file": "block3_shortcut_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        12,
+        24
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool2",
+      "bn_name": "block3_shortcut_bn",
+      "activation_name": null,
+      "output_scale": 0.07479720979224978,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 16292727,
+        "shift": 31,
+        "real_multiplier": 0.007586892057122626,
+        "approx_multiplier": 0.007586892228573561,
+        "error": 1.714509350464466e-10
+      },
+      "output_mode": "REQUANT"
+    },
+    "block3_out_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.07643183760755644,
+      "weight_scale": 0.006664353562152292,
+      "accumulator_scale": 0.0005093687892217643,
+      "kernel_file": "block3_out_proj_kernel.npy",
+      "bias_file": "block3_out_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        48,
+        24
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "block3_concat",
+      "bn_name": "block3_out_bn",
+      "activation_name": null,
+      "output_scale": 0.07722961245559332,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 14163753,
+        "shift": 31,
+        "real_multiplier": 0.0065955113981006844,
+        "approx_multiplier": 0.006595511455088854,
+        "error": 5.698816939181395e-11
+      },
+      "output_mode": "REQUANT"
+    },
+    "block4_b1_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 4,
+      "input_scale": 0.07676310051144578,
+      "depthwise_scale": 0.04337151987212045,
+      "depthwise_acc_scale": 0.00332933233927775,
+      "depthwise_output_scale": 0.17831015586853027,
+      "depthwise_requant": {
+        "multiplier": 40096913,
+        "shift": 31,
+        "real_multiplier": 0.018671579995322856,
+        "approx_multiplier": 0.018671580124646425,
+        "error": 1.2932356921457888e-10
+      },
+      "pointwise_scale": 0.33833837509155273,
+      "pointwise_acc_scale": 0.06032916839888003,
+      "depthwise_file": "block4_b1_sepconv_depthwise.npy",
+      "pointwise_file": "block4_b1_sepconv_pointwise.npy",
+      "bias_file": "block4_b1_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        3,
+        24,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        24,
+        14
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool3",
+      "bn_name": "block4_b1_bn",
+      "activation_name": "block4_b1_act",
+      "preactivation_scale": 0.05021482753002737,
+      "output_scale": 0.4572601318359375,
+      "output_bits": 4,
+      "acc_to_preact": {
+        "multiplier": 1290016406,
+        "shift": 30,
+        "real_multiplier": 1.2014214001393213,
+        "approx_multiplier": 1.2014214005321264,
+        "error": 3.928051217627626e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block4_b2_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 4,
+      "input_scale": 0.07676310051144578,
+      "depthwise_scale": 0.05306751813207354,
+      "depthwise_acc_scale": 0.004073627228265333,
+      "depthwise_output_scale": 0.19717514514923096,
+      "depthwise_requant": {
+        "multiplier": 44366889,
+        "shift": 31,
+        "real_multiplier": 0.020659942840068557,
+        "approx_multiplier": 0.020659942645579576,
+        "error": 1.9448898047613739e-10
+      },
+      "pointwise_scale": 0.2946990898677281,
+      "pointwise_acc_scale": 0.058107335820015545,
+      "depthwise_file": "block4_b2_sepconv_depthwise.npy",
+      "pointwise_file": "block4_b2_sepconv_pointwise.npy",
+      "bias_file": "block4_b2_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        7,
+        24,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        24,
+        14
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool3",
+      "bn_name": "block4_b2_bn",
+      "activation_name": "block4_b2_act",
+      "preactivation_scale": 0.05543019452432948,
+      "output_scale": 0.5368861130305699,
+      "output_bits": 4,
+      "acc_to_preact": {
+        "multiplier": 1125600898,
+        "shift": 30,
+        "real_multiplier": 1.0482975266217227,
+        "approx_multiplier": 1.0482975263148546,
+        "error": 3.0686808649704744e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block4_b3_sepconv": {
+      "type": "SeparableConv1D",
+      "bits": 8,
+      "input_scale": 0.07676310051144578,
+      "depthwise_scale": 0.0031222560274319386,
+      "depthwise_acc_scale": 0.0002396740532562253,
+      "depthwise_output_scale": 0.03033438254529097,
+      "depthwise_requant": {
+        "multiplier": 16967417,
+        "shift": 31,
+        "real_multiplier": 0.007901069121759054,
+        "approx_multiplier": 0.00790106924250722,
+        "error": 1.2074816493901075e-10
+      },
+      "pointwise_scale": 0.013026020658297801,
+      "pointwise_acc_scale": 0.0003951362936916684,
+      "depthwise_file": "block4_b3_sepconv_depthwise.npy",
+      "pointwise_file": "block4_b3_sepconv_pointwise.npy",
+      "bias_file": "block4_b3_sepconv_bias_int32.npy",
+      "depthwise_shape": [
+        9,
+        24,
+        1
+      ],
+      "pointwise_shape": [
+        1,
+        24,
+        14
+      ],
+      "stride": 1,
+      "dilation": 2,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool3",
+      "bn_name": "block4_b3_bn",
+      "activation_name": "block4_b3_act",
+      "preactivation_scale": 0.052546185771311364,
+      "output_scale": 0.05162078376830093,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 16148627,
+        "shift": 31,
+        "real_multiplier": 0.007519790216769661,
+        "approx_multiplier": 0.0075197904370725155,
+        "error": 2.2030285408425332e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block4_pool_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.07676310051144578,
+      "weight_scale": 0.003183097116590485,
+      "accumulator_scale": 0.0002443444038985286,
+      "kernel_file": "block4_pool_proj_kernel.npy",
+      "bias_file": "block4_pool_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        24,
+        14
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool3",
+      "bn_name": "block4_pool_bn",
+      "activation_name": "block4_pool_act",
+      "preactivation_scale": 0.06194088027233214,
+      "output_scale": 0.038376834448866956,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 8471394,
+        "shift": 31,
+        "real_multiplier": 0.003944800313205636,
+        "approx_multiplier": 0.0039448002353310585,
+        "error": 7.787457744629078e-11
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "block4_shortcut": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.07676310051144578,
+      "weight_scale": 0.0025084626486920935,
+      "accumulator_scale": 0.00019255737043075865,
+      "kernel_file": "block4_shortcut_kernel.npy",
+      "bias_file": "block4_shortcut_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        24,
+        28
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "pool3",
+      "bn_name": "block4_shortcut_bn",
+      "activation_name": null,
+      "output_scale": 0.04297171990702471,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 9622929,
+        "shift": 31,
+        "real_multiplier": 0.004481025447605618,
+        "approx_multiplier": 0.004481025505810976,
+        "error": 5.820535806805305e-11
+      },
+      "output_mode": "REQUANT"
+    },
+    "block4_out_proj": {
+      "type": "Conv1D",
+      "bits": 8,
+      "input_scale": 0.05543019452432948,
+      "weight_scale": 0.0076293457211471915,
+      "accumulator_scale": 0.0004228961174165496,
+      "kernel_file": "block4_out_proj_kernel.npy",
+      "bias_file": "block4_out_proj_bias_int32.npy",
+      "kernel_shape": [
+        1,
+        56,
+        28
+      ],
+      "stride": 1,
+      "dilation": 1,
+      "padding": "same",
+      "bn_folded": true,
+      "input_source": "block4_concat",
+      "bn_name": "block4_out_bn",
+      "activation_name": null,
+      "output_scale": 0.060566932197630874,
+      "output_bits": 8,
+      "acc_to_output": {
+        "multiplier": 14994362,
+        "shift": 31,
+        "real_multiplier": 0.006982293837116147,
+        "approx_multiplier": 0.006982293911278248,
+        "error": 7.416210093952325e-11
+      },
+      "output_mode": "REQUANT"
+    },
+    "head_dense": {
+      "type": "Dense",
+      "bits": 8,
+      "input_scale": 0.03961013058039147,
+      "weight_scale": 0.022060856105774407,
+      "accumulator_scale": 0.0008738333910649508,
+      "kernel_file": "head_dense_kernel.npy",
+      "bias_file": "head_dense_bias_int32.npy",
+      "kernel_shape": [
+        56,
+        24
+      ],
+      "bn_folded": true,
+      "input_source": "head_concat",
+      "bn_name": "head_bn",
+      "activation_name": "head_act",
+      "preactivation_scale": 0.03304381633368064,
+      "output_scale": 0.03304336953350878,
+      "output_bits": 8,
+      "acc_to_preact": {
+        "multiplier": 56789534,
+        "shift": 31,
+        "real_multiplier": 0.026444687327906394,
+        "approx_multiplier": 0.026444687508046627,
+        "error": 1.8014023259182999e-10
+      },
+      "output_mode": "REQUANT_GELU_REQUANT"
+    },
+    "class_output": {
+      "type": "Dense",
+      "bits": 8,
+      "input_scale": 0.03304336953350878,
+      "weight_scale": 0.012858514710674136,
+      "accumulator_scale": 0.00042488865323686423,
+      "kernel_file": "class_output_kernel.npy",
+      "bias_file": "class_output_bias_int32.npy",
+      "kernel_shape": [
+        24,
+        5
+      ],
+      "bn_folded": false,
+      "input_source": "head_act",
+      "bn_name": null,
+      "activation_name": null,
+      "logit_scale": 0.00042488865323686423,
+      "output_mode": "INT32_LOGITS"
+    }
+  },
+  "tensor_scales": {
+    "__input__": {
+      "bits": 8,
+      "max_abs": 8.070563316345215,
+      "scale": 0.06354774264838751
+    },
+    "stem_conv": {
+      "bits": 8,
+      "max_abs": 5.665113925933838,
+      "scale": 0.04460719626719557
+    },
+    "stem_bn": {
+      "bits": 8,
+      "max_abs": 11.804522514343262,
+      "scale": 0.09294899617593119
+    },
+    "stem_act": {
+      "bits": 8,
+      "max_abs": 11.22081470489502,
+      "scale": 0.08835287169208676
+    },
+    "block1_pool": {
+      "bits": 8,
+      "max_abs": 11.22081470489502,
+      "scale": 0.08835287169208676
+    },
+    "block1_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 3.0771381855010986,
+      "scale": 0.024229434531504713
+    },
+    "block1_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 2.3573365211486816,
+      "scale": 0.0185617048909345
+    },
+    "block1_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.3597681522369385,
+      "scale": 0.026454867340448336
+    },
+    "block1_pool_proj": {
+      "bits": 8,
+      "max_abs": 5.2701263427734375,
+      "scale": 0.04149705781711368
+    },
+    "block1_b1_bn": {
+      "bits": 8,
+      "max_abs": 11.22869873046875,
+      "scale": 0.08841495063361221
+    },
+    "block1_b2_bn": {
+      "bits": 8,
+      "max_abs": 14.474739074707031,
+      "scale": 0.11397432342289
+    },
+    "block1_b3_bn": {
+      "bits": 8,
+      "max_abs": 22.002050399780273,
+      "scale": 0.17324449133685255
+    },
+    "block1_pool_bn": {
+      "bits": 8,
+      "max_abs": 14.335380554199219,
+      "scale": 0.11287701223778912
+    },
+    "block1_b1_act": {
+      "bits": 8,
+      "max_abs": 10.355667114257812,
+      "scale": 0.08154068593903789
+    },
+    "block1_b2_act": {
+      "bits": 8,
+      "max_abs": 14.474739074707031,
+      "scale": 0.11397432342289
+    },
+    "block1_b3_act": {
+      "bits": 8,
+      "max_abs": 14.517292976379395,
+      "scale": 0.11430939351479838
+    },
+    "block1_pool_act": {
+      "bits": 8,
+      "max_abs": 11.389723777770996,
+      "scale": 0.08968286439189761
+    },
+    "block1_concat": {
+      "bits": 8,
+      "max_abs": 14.517292976379395,
+      "scale": 0.11430939351479838
+    },
+    "block1_out_proj": {
+      "bits": 8,
+      "max_abs": 10.653547286987305,
+      "scale": 0.08388619911013626
+    },
+    "block1_out_bn": {
+      "bits": 8,
+      "max_abs": 23.046234130859375,
+      "scale": 0.18146641047920767
+    },
+    "block1_add": {
+      "bits": 8,
+      "max_abs": 17.57942008972168,
+      "scale": 0.13842063062772977
+    },
+    "block1_act": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block1_drop": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "pool1": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block2_pool": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block2_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 2.368079423904419,
+      "scale": 0.018646294676412746
+    },
+    "block2_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 2.897498607635498,
+      "scale": 0.022814949666421246
+    },
+    "block2_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.8184146881103516,
+      "scale": 0.03006625738669568
+    },
+    "block2_pool_proj": {
+      "bits": 8,
+      "max_abs": 8.863840103149414,
+      "scale": 0.06979401656023161
+    },
+    "block2_b1_bn": {
+      "bits": 8,
+      "max_abs": 14.01962661743164,
+      "scale": 0.11039076076717827
+    },
+    "block2_b2_bn": {
+      "bits": 8,
+      "max_abs": 12.134074211120605,
+      "scale": 0.0955438914261465
+    },
+    "block2_b3_bn": {
+      "bits": 8,
+      "max_abs": 10.796098709106445,
+      "scale": 0.08500865125280666
+    },
+    "block2_pool_bn": {
+      "bits": 8,
+      "max_abs": 14.147634506225586,
+      "scale": 0.11139869689941406
+    },
+    "block2_b1_act": {
+      "bits": 8,
+      "max_abs": 12.8539457321167,
+      "scale": 0.10121217111902912
+    },
+    "block2_b2_act": {
+      "bits": 8,
+      "max_abs": 8.391708374023438,
+      "scale": 0.06607644388994832
+    },
+    "block2_b3_act": {
+      "bits": 4,
+      "max_abs": 10.796098709106445,
+      "clip_abs": 6.375473499298096,
+      "scale": 0.9107819284711566,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block2_pool_act": {
+      "bits": 8,
+      "max_abs": 7.130914688110352,
+      "scale": 0.056148934552050014
+    },
+    "block2_concat": {
+      "bits": 8,
+      "max_abs": 12.8539457321167,
+      "scale": 0.10121217111902912
+    },
+    "block2_shortcut": {
+      "bits": 8,
+      "max_abs": 9.894856452941895,
+      "scale": 0.07791225553497555
+    },
+    "block2_out_proj": {
+      "bits": 8,
+      "max_abs": 6.079833030700684,
+      "scale": 0.04787270102913924
+    },
+    "block2_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 12.581833839416504,
+      "scale": 0.09906955779068113
+    },
+    "block2_out_bn": {
+      "bits": 8,
+      "max_abs": 13.763198852539062,
+      "scale": 0.1083716445081816
+    },
+    "block2_add": {
+      "bits": 8,
+      "max_abs": 19.982093811035156,
+      "scale": 0.1573393213467335
+    },
+    "block2_act": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block2_drop": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "pool2": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block3_pool": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block3_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 1.6998354196548462,
+      "scale": 0.013384530863423985
+    },
+    "block3_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 1.7765564918518066,
+      "scale": 0.013988633794108713
+    },
+    "block3_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 2.640021800994873,
+      "scale": 0.020787573236180103
+    },
+    "block3_pool_proj": {
+      "bits": 8,
+      "max_abs": 8.429038047790527,
+      "scale": 0.06637037832905927
+    },
+    "block3_b1_bn": {
+      "bits": 8,
+      "max_abs": 12.19692611694336,
+      "scale": 0.09603878832238866
+    },
+    "block3_b2_bn": {
+      "bits": 8,
+      "max_abs": 12.905192375183105,
+      "scale": 0.10161568799356777
+    },
+    "block3_b3_bn": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_pool_bn": {
+      "bits": 8,
+      "max_abs": 12.00783634185791,
+      "scale": 0.09454989245557409
+    },
+    "block3_b1_act": {
+      "bits": 8,
+      "max_abs": 6.712452411651611,
+      "scale": 0.052853955997256785
+    },
+    "block3_b2_act": {
+      "bits": 4,
+      "max_abs": 9.27634334564209,
+      "clip_abs": 5.0656418800354,
+      "scale": 0.7236631257193429,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b3_act": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_pool_act": {
+      "bits": 8,
+      "max_abs": 7.775599002838135,
+      "scale": 0.06122518899872547
+    },
+    "block3_concat": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_shortcut": {
+      "bits": 8,
+      "max_abs": 6.815467834472656,
+      "scale": 0.053665101058839815
+    },
+    "block3_out_proj": {
+      "bits": 8,
+      "max_abs": 5.885860919952393,
+      "scale": 0.04634536157442829
+    },
+    "block3_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 9.499245643615723,
+      "scale": 0.07479720979224978
+    },
+    "block3_out_bn": {
+      "bits": 8,
+      "max_abs": 9.808160781860352,
+      "scale": 0.07722961245559332
+    },
+    "block3_add": {
+      "bits": 8,
+      "max_abs": 13.533161163330078,
+      "scale": 0.10656032412070927
+    },
+    "block3_act": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block3_drop": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "pool3": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block4_pool": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block4_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 0.8807024359703064,
+      "scale": 0.006934664850159893
+    },
+    "block4_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 1.5176525115966797,
+      "scale": 0.011950019776351808
+    },
+    "block4_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 2.3085124492645264,
+      "scale": 0.01817726338003564
+    },
+    "block4_pool_proj": {
+      "bits": 8,
+      "max_abs": 6.847311019897461,
+      "scale": 0.05391583480234221
+    },
+    "block4_b1_bn": {
+      "bits": 8,
+      "max_abs": 6.377283096313477,
+      "scale": 0.05021482753002737
+    },
+    "block4_b2_bn": {
+      "bits": 8,
+      "max_abs": 7.039634704589844,
+      "scale": 0.05543019452432948
+    },
+    "block4_b3_bn": {
+      "bits": 8,
+      "max_abs": 6.673365592956543,
+      "scale": 0.052546185771311364
+    },
+    "block4_pool_bn": {
+      "bits": 8,
+      "max_abs": 7.866491794586182,
+      "scale": 0.06194088027233214
+    },
+    "block4_b1_act": {
+      "bits": 4,
+      "max_abs": 5.453510761260986,
+      "clip_abs": 3.2008209228515625,
+      "scale": 0.4572601318359375,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b2_act": {
+      "bits": 4,
+      "max_abs": 7.039634704589844,
+      "clip_abs": 3.7582027912139893,
+      "scale": 0.5368861130305699,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b3_act": {
+      "bits": 8,
+      "max_abs": 6.555839538574219,
+      "scale": 0.05162078376830093
+    },
+    "block4_pool_act": {
+      "bits": 8,
+      "max_abs": 4.8738579750061035,
+      "scale": 0.038376834448866956
+    },
+    "block4_concat": {
+      "bits": 8,
+      "max_abs": 7.039634704589844,
+      "scale": 0.05543019452432948
+    },
+    "block4_shortcut": {
+      "bits": 8,
+      "max_abs": 6.9155378341674805,
+      "scale": 0.05445305381234237
+    },
+    "block4_out_proj": {
+      "bits": 8,
+      "max_abs": 4.954633712768555,
+      "scale": 0.03901286388006736
+    },
+    "block4_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 5.457408428192139,
+      "scale": 0.04297171990702471
+    },
+    "block4_out_bn": {
+      "bits": 8,
+      "max_abs": 7.692000389099121,
+      "scale": 0.060566932197630874
+    },
+    "block4_add": {
+      "bits": 8,
+      "max_abs": 9.035265922546387,
+      "scale": 0.07114382616178257
+    },
+    "block4_act": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "block4_drop": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "gap": {
+      "bits": 8,
+      "max_abs": 0.8324615359306335,
+      "scale": 0.0065548152435482955
+    },
+    "gmp": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "head_concat": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "head_dense": {
+      "bits": 8,
+      "max_abs": 1.5199856758117676,
+      "scale": 0.011968391148124154
+    },
+    "head_bn": {
+      "bits": 8,
+      "max_abs": 4.196564674377441,
+      "scale": 0.03304381633368064
+    },
+    "head_act": {
+      "bits": 8,
+      "max_abs": 4.196507930755615,
+      "scale": 0.03304336953350878
+    },
+    "head_dropout": {
+      "bits": 8,
+      "max_abs": 4.196507930755615,
+      "scale": 0.03304336953350878
+    },
+    "class_output": {
+      "bits": 8,
+      "max_abs": 0.9994751811027527,
+      "scale": 0.007869883315769707
+    }
+  },
+  "separable_internal_scales": {
+    "block1_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 7.541182518005371,
+      "scale": 0.0593793899055541
+    },
+    "block1_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 5.4452595710754395,
+      "scale": 0.04287605961476724
+    },
+    "block1_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 6.051379680633545,
+      "scale": 0.04764865890262634
+    },
+    "block2_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 7.5153584480285645,
+      "scale": 0.05917605077187846
+    },
+    "block2_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 7.887868404388428,
+      "scale": 0.06210920003455455
+    },
+    "block2_b3_sepconv": {
+      "bits": 4,
+      "max_abs": 5.597830772399902,
+      "clip_abs": 3.621155261993408,
+      "scale": 0.5173078945704869,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 3.3207268714904785,
+      "scale": 0.02614745568102739
+    },
+    "block3_b2_sepconv": {
+      "bits": 4,
+      "max_abs": 6.213369369506836,
+      "clip_abs": 3.327242612838745,
+      "scale": 0.4753203732626779,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 4.6759233474731445,
+      "scale": 0.03681829407459169
+    },
+    "block4_b1_sepconv": {
+      "bits": 4,
+      "max_abs": 2.3861358165740967,
+      "clip_abs": 1.248171091079712,
+      "scale": 0.17831015586853027,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b2_sepconv": {
+      "bits": 4,
+      "max_abs": 2.19008207321167,
+      "clip_abs": 1.3802260160446167,
+      "scale": 0.19717514514923096,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.852466583251953,
+      "scale": 0.03033438254529097
+    }
+  }
+}

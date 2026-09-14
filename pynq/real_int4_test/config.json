@@ -1,0 +1,37 @@
+{
+    "source": "real_stem_test",
+    "source_config": {
+        "source": "MIT-BIH local validation",
+        "label": "N",
+        "record_id": "230",
+        "record_local": "D:\\HCMUTE\\HK I nam 4\\DiDong\\ECG_NAS_LOCAL\\datasets\\230",
+        "channel": "MLII",
+        "start": 421530,
+        "end": 421849,
+        "layer": "stem_conv",
+        "input_len": 320,
+        "cin": 1,
+        "cout": 8,
+        "kernel_size": 7,
+        "dilation": 1,
+        "same": true,
+        "input_scale": 0.06354774264838751,
+        "weight_scale": 0.008201397310091755,
+        "preactivation_scale": 0.09294899617593119,
+        "multiplier": 12041293,
+        "shift": 31,
+        "input_bits": 8,
+        "weight_bits": 8,
+        "output_bits": 8
+    },
+    "pool1_shape": [
+        160,
+        8
+    ],
+    "pool1_dtype": "int8",
+    "pool1_scale": 0.1295149495282511,
+    "pool1_bits": 8,
+    "pool1_min": -1,
+    "pool1_max": 81,
+    "next_target_layer": "block2_b3_sepconv"
+}

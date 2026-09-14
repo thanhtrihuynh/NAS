@@ -1,0 +1,10 @@
+{
+  "index": 29,
+  "name": "block4_b2_sepconv_depthwise",
+  "source_layer": "block4_b2_sepconv",
+  "stage": "depthwise",
+  "multiplier": 44366889,
+  "shift": 31,
+  "output_bits": 4,
+  "num_vectors": 339
+}

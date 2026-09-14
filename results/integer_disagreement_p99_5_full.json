@@ -1,0 +1,73 @@
+{
+  "samples": 15010,
+  "qat_accuracy": 0.993471019320453,
+  "qat_macro_f1": 0.979614151158003,
+  "integer_accuracy": 0.9921385742838108,
+  "integer_macro_f1": 0.9734949176318033,
+  "agreement": 0.9955363091272486,
+  "different_predictions": 67,
+  "disagreement_by_true_class": {
+    "N": {
+      "total": 11204,
+      "different": 20,
+      "ratio": 0.001785076758300607
+    },
+    "L": {
+      "total": 1224,
+      "different": 3,
+      "ratio": 0.0024509803921568627
+    },
+    "R": {
+      "total": 1078,
+      "different": 5,
+      "ratio": 0.00463821892393321
+    },
+    "V": {
+      "total": 1140,
+      "different": 12,
+      "ratio": 0.010526315789473684
+    },
+    "A": {
+      "total": 364,
+      "different": 27,
+      "ratio": 0.07417582417582418
+    }
+  },
+  "qat_to_integer_transition": [
+    [
+      11237,
+      1,
+      1,
+      3,
+      1
+    ],
+    [
+      1,
+      1208,
+      0,
+      2,
+      0
+    ],
+    [
+      5,
+      0,
+      1070,
+      0,
+      3
+    ],
+    [
+      19,
+      0,
+      0,
+      1124,
+      0
+    ],
+    [
+      29,
+      0,
+      0,
+      2,
+      304
+    ]
+  ]
+}

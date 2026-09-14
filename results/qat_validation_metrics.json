@@ -1,0 +1,46 @@
+{
+  "fp32": {
+    "accuracy": 0.9940039973351099,
+    "macro_f1": 0.9810518563992016
+  },
+  "mixed_before_qat": {
+    "accuracy": 0.9920053297801465,
+    "macro_f1": 0.9773127241624969
+  },
+  "mixed_after_qat": {
+    "accuracy": 0.993471019320453,
+    "macro_f1": 0.9802711928618967
+  },
+  "int4_layers": [
+    "block2_b3_sepconv",
+    "block3_b2_sepconv",
+    "block4_b1_sepconv",
+    "block4_b2_sepconv"
+  ],
+  "int8_layers": [
+    "stem_conv",
+    "block1_b1_sepconv",
+    "block1_b2_sepconv",
+    "block1_b3_sepconv",
+    "block1_pool_proj",
+    "block1_out_proj",
+    "block2_b1_sepconv",
+    "block2_b2_sepconv",
+    "block2_pool_proj",
+    "block2_shortcut",
+    "block2_out_proj",
+    "block3_b1_sepconv",
+    "block3_b3_sepconv",
+    "block3_pool_proj",
+    "block3_shortcut",
+    "block3_out_proj",
+    "block4_b3_sepconv",
+    "block4_pool_proj",
+    "block4_shortcut",
+    "block4_out_proj",
+    "head_dense",
+    "class_output"
+  ],
+  "qat_epochs": 15,
+  "qat_learning_rate": 1e-05
+}

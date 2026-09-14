@@ -1,0 +1,21 @@
+{
+  "source": "real_stem_test",
+  "label": "N",
+  "record_id": "230",
+  "layer": "block1_b1_sepconv",
+  "bits": 8,
+  "input_len": 320,
+  "cin": 8,
+  "cout": 4,
+  "input_scale": 0.08835287169208676,
+  "kernel_size": 3,
+  "dilation": 1,
+  "same": true,
+  "depthwise_multiplier": 8985879,
+  "depthwise_shift": 31,
+  "depthwise_output_scale": 0.0593793899055541,
+  "pointwise_multiplier": 23682354,
+  "pointwise_shift": 31,
+  "preactivation_scale": 0.08841495063361221,
+  "output_bits": 8
+}

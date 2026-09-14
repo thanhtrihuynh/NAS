@@ -1,0 +1,10 @@
+{
+  "index": 0,
+  "name": "stem_conv_preact",
+  "source_layer": "stem_conv",
+  "stage": "preactivation",
+  "multiplier": 12041293,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

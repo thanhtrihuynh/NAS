@@ -1,0 +1,10 @@
+{
+  "index": 25,
+  "name": "block3_shortcut_output",
+  "source_layer": "block3_shortcut",
+  "stage": "output",
+  "multiplier": 16292727,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

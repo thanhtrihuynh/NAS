@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECG NAS FPGA Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css?v=5.19.0">
+</head>
+<body>
+<div class="app-shell">
+
+    <header class="topbar">
+        <div class="brand">
+            <div class="brand-icon">❤</div>
+            <div class="brand-text">
+                <h1>ECG NAS FPGA Dashboard</h1>
+                <p>Neural Architecture Search for ECG Arrhythmia Classification &nbsp;|&nbsp; Hardware-Aware &nbsp;·&nbsp; FPGA Deployment</p>
+            </div>
+        </div>
+
+        <div class="header-status">
+            <div class="status-card server-status">
+                <div class="status-dot" id="serverDot"></div>
+                <div>
+                    <strong id="serverText">Connecting...</strong>
+                    <small id="serverMeta">Laptop controller</small>
+                </div>
+            </div>
+
+            <div class="status-card fpga-status">
+                <div class="status-icon">▣</div>
+                <div>
+                    <strong>FPGA Ready</strong>
+                    <small id="fpgaMeta">PYNQ-Z2</small>
+                </div>
+            </div>
+
+            <div class="status-card time-status">
+                <div class="status-icon">◷</div>
+                <div>
+                    <strong id="dateText">-</strong>
+                    <small id="timeText">-</small>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="layout-grid">
+
+        <aside class="left-column">
+            <section class="panel main-panel">
+                <div class="panel-title-row">
+                    <div class="number-badge">1</div>
+                    <div>
+                        <h2>Data &amp; Input</h2>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Rhythm Class</label>
+                    <select id="classFilter">
+                        <option value="">All N / L / R / V / A</option>
+                        <option value="N">N — Normal</option>
+                        <option value="L">L</option>
+                        <option value="R">R</option>
+                        <option value="V">V — Ventricular</option>
+                        <option value="A">A — Atrial</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>ECG Record File</label>
+                    <div class="browse-row">
+                        <select id="recordSelect"></select>
+                        <button id="refreshRecordsButton" class="soft-button browse-like">Reload</button>
+                    </div>
+                    <div class="small-note">MIT-BIH Arrhythmia Database</div>
+                    <div id="datasetStatus" class="small-note dataset-status">Loading datasets...</div>
+                    <div id="datasetError" class="small-note dataset-error"></div>
+                </div>
+
+                <div class="input-group">
+                    <label>Beat Source</label>
+                    <select id="beatSource">
+                        <option value="atr" selected>All annotated beats (.atr)</option>
+                        <option value="test">Test-set beats only (test.csv)</option>
+                    </select>
+                    <div class="small-note">
+                        Mặc định đọc trực tiếp file .atr của record. Chế độ test.csv chỉ hiển thị các beat thuộc tập test.
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Channel Selection</label>
+                    <select id="channelSelect"></select>
+                </div>
+
+                <div class="input-group">
+                    <label>Heartbeat / Segment</label>
+                    <select id="segmentSelect"></select>
+                    <div class="small-note">Chọn một heartbeat để xem waveform và dự đoán tự động</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-title">Selected Record Summary</div>
+                    <div id="recordInfo" class="record-summary">Select a record.</div>
+                </div>
+
+                <div class="left-actions">
+                    <button id="loadSegmentButton" class="primary-button full-width">Load Selected Heartbeat</button>
+                </div>
+            </section>
+        </aside>
+
+        <section class="center-column">
+            <section class="panel waveform-panel">
+                <div class="panel-header between waveform-title-row">
+                    <div>
+                        <h2 id="recordTitle">ECG Record Browser</h2>
+                        <div id="windowRangeText" class="wave-window-caption">
+                            Select a record to inspect ECG.
+                        </div>
+                    </div>
+
+                    <div class="header-chips">
+                        <span class="chip" id="recordMetric">Record: -</span>
+                        <span class="chip" id="channelMetric">Channel: -</span>
+                        <span class="chip" id="durationMetric">Duration: -</span>
+                    </div>
+                </div>
+
+                <div class="wave-toolbar">
+                    <div class="wave-toolbar-group">
+                        <button id="previousWindowButton" class="wave-nav-button" type="button">
+                            ◀ Previous
+                        </button>
+
+                        <button id="nextWindowButton" class="wave-nav-button" type="button">
+                            Next ▶
+                        </button>
+                    </div>
+
+                    <div class="wave-toolbar-group">
+                        <label for="windowSecondsSelect">Window</label>
+                        <select id="windowSecondsSelect" class="wave-window-select">
+                            <option value="5">5 s</option>
+                            <option value="10" selected>10 s</option>
+                            <option value="20">20 s</option>
+                            <option value="30">30 s</option>
+                        </select>
+
+                        <span id="windowBeatCount" class="window-beat-count">
+                            0 beats
+                        </span>
+                    </div>
+                </div>
+
+                <div class="wave-section-label">
+                    Detailed ECG window
+                </div>
+
+                <div class="canvas-frame zoom-wave-frame">
+                    <canvas id="windowCanvas" width="1500" height="420"></canvas>
+                </div>
+
+                <div class="wave-browser-controls">
+                    <div class="wave-section-label overview-label-row">
+                        <span>Full record overview</span>
+                        <span class="overview-help">
+                            Drag the slider to move through the complete record.
+                        </span>
+                    </div>
+
+                    <div class="canvas-frame overview-frame">
+                        <canvas id="overviewCanvas" width="1500" height="120"></canvas>
+                    </div>
+
+                    <input
+                        id="recordPositionSlider"
+                        class="record-position-slider"
+                        type="range"
+                        min="0"
+                        max="0"
+                        step="0.25"
+                        value="0"
+                    >
+
+                    <div class="slider-time-row">
+                        <span>0:00</span>
+                        <strong id="sliderCurrentTime">0:00</strong>
+                        <span id="sliderEndTime">0:00</span>
+                    </div>
+                </div>
+
+                <div class="wave-legend-row">
+                    <span id="markerLegend">No markers.</span>
+                    <span class="hint-text">
+                        Every colored dot/tick is an annotated heartbeat; none are removed from the active window.
+                    </span>
+                </div>
+            </section>
+
+            <div class="center-mid-grid">
+                <section class="panel segment-panel">
+                    <div class="panel-header between">
+                        <div>
+                            <h2>Selected Heartbeat</h2>
+                        </div>
+                        <div class="toggle-wrap">
+                            <button id="rawButton" class="toggle-button active">Raw</button>
+                            <button id="normalizedButton" class="toggle-button">Normalized</button>
+                        </div>
+                    </div>
+
+                    <div id="segmentInfoGrid" class="segment-info-grid"></div>
+
+                    <div class="canvas-frame medium-frame">
+                        <canvas id="segmentCanvas" width="900" height="300"></canvas>
+                    </div>
+                </section>
+
+                <section class="panel inference-panel">
+                    <div class="panel-header between">
+                        <div><h2>Inference Result</h2></div>
+                        <span class="result-status" id="inferenceBadge">Ready</span>
+                    </div>
+
+                    <div class="execution-selector">
+                        <button id="modeLocalButton" class="execution-mode-button active" type="button">Local Integer</button>
+                        <button id="modeFpgaButton" class="execution-mode-button" type="button">PYNQ FPGA Hybrid</button>
+                    </div>
+
+                    <button id="runInferenceButton" class="primary-button full-width" disabled>Run Local Integer Inference</button>
+                    <div id="inferenceState" class="message-box">Select a heartbeat first.</div>
+
+                    <div id="executionSummary" class="execution-summary hidden">
+                        <div class="execution-summary-head">
+                            <div><span class="mini-label">Execution Mode</span><strong id="executionModeName">-</strong></div>
+                            <span id="executionSourceBadge" class="runtime-source-badge">-</span>
+                        </div>
+                        <div class="execution-metric-grid">
+                            <div class="execution-metric"><span>Total Latency</span><strong id="totalLatencyValue">-</strong></div>
+                            <div class="execution-metric"><span>FPGA Weighted</span><strong id="fpgaLatencyValue">-</strong></div>
+                            <div class="execution-metric"><span>ARM / Runtime Overhead</span><strong id="runtimeOverheadValue">-</strong></div>
+                            <div class="execution-metric"><span>Precision</span><strong>Mixed INT8 / INT4</strong></div>
+                            <div class="execution-metric"><span>Deployment</span><strong>final_w4a4_p99_9</strong></div>
+                            <div class="execution-metric"><span>FPGA Clock</span><strong id="fpgaClockValue">40 MHz</strong></div>
+                        </div>
+                    </div>
+
+                    <div id="predictionBox" class="prediction-grid hidden">
+                        <div class="predicted-card">
+                            <span class="mini-label">Predicted Label</span>
+                            <div class="pred-label-row"><strong id="predictedLabel">-</strong><div class="pred-subtext">Heartbeat class</div></div>
+                        </div>
+                        <div class="truth-card"><span class="mini-label">True Label</span><strong id="expectedLabel">-</strong></div>
+                    </div>
+
+                    <div id="probabilityBars" class="probability-bars"></div>
+
+                    <div id="fpgaResourcePanel" class="fpga-resource-panel hidden">
+                        <div class="fpga-resource-head">
+                            <div><span class="mini-label">FPGA Resource Usage</span><strong id="fpgaDeviceName">PYNQ-Z2 / XC7Z020</strong></div>
+                            <span id="resourceReportBadge" class="resource-report-badge">Report</span>
+                        </div>
+                        <div id="fpgaResourceGrid" class="fpga-resource-grid"></div>
+                        <div id="fpgaResourceNote" class="fpga-resource-note">Loading FPGA utilization report...</div>
+                    </div>
+
+                    <div id="traceBox" class="trace-box"></div>
+                    <details id="pynqDebugDetails" class="details-box hidden"><summary>PYNQ request / response</summary><pre id="sendResponse">No request sent.</pre></details>
+
+                    <div class="full-test-panel">
+                        <div class="full-test-head">
+                            <div>
+                                <span class="mini-label">Dataset Evaluation</span>
+                                <strong>Full Test Set</strong>
+                            </div>
+                            <span id="fullTestBadge" class="full-test-badge">Idle</span>
+                        </div>
+
+                        <p class="full-test-note">
+                            Runs every row in test.csv using the currently selected execution mode.
+                            This is final evaluation only; it does not retrain or change the model.
+                        </p>
+
+                        <div class="full-test-actions">
+                            <button id="runFullTestButton" class="secondary-button" type="button">
+                                Run Full Test Set · Local Integer
+                            </button>
+                            <button id="stopFullTestButton" class="secondary-button danger-button hidden" type="button">
+                                Stop
+                            </button>
+                        </div>
+
+                        <div id="fullTestState" class="message-box">
+                            Ready. Select Local Integer or PYNQ FPGA Hybrid above, then start the full test.
+                        </div>
+
+                        <div id="fullTestProgressWrap" class="full-test-progress-wrap hidden">
+                            <div class="full-test-progress-head">
+                                <span id="fullTestProgressText">0 / 0 samples</span>
+                                <strong id="fullTestProgressPercent">0.00%</strong>
+                            </div>
+                            <div class="full-test-progress-track">
+                                <div id="fullTestProgressBar" class="full-test-progress-bar"></div>
+                            </div>
+                        </div>
+
+                        <div id="fullTestMetrics" class="full-test-metric-grid hidden">
+                            <div class="full-test-metric">
+                                <span>Accuracy</span>
+                                <strong id="fullTestAccuracy">-</strong>
+                            </div>
+                            <div class="full-test-metric">
+                                <span>Macro F1</span>
+                                <strong id="fullTestMacroF1">-</strong>
+                            </div>
+                            <div class="full-test-metric">
+                                <span>Avg Total Latency</span>
+                                <strong id="fullTestAvgLatency">-</strong>
+                            </div>
+                            <div class="full-test-metric">
+                                <span>Avg FPGA Weighted</span>
+                                <strong id="fullTestAvgFpga">-</strong>
+                            </div>
+                            <div class="full-test-metric">
+                                <span>Failed Samples</span>
+                                <strong id="fullTestFailed">0</strong>
+                            </div>
+                            <div class="full-test-metric">
+                                <span>ETA / Elapsed</span>
+                                <strong id="fullTestEta">-</strong>
+                            </div>
+                        </div>
+
+                        <div id="fullTestConfusionWrap" class="full-test-confusion-wrap hidden">
+                            <div class="section-title">Confusion Matrix · rows=true · columns=predicted</div>
+                            <div class="full-test-table-wrap">
+                                <table id="fullTestConfusionTable"></table>
+                            </div>
+                        </div>
+
+                        <details id="fullTestOutputDetails" class="details-box hidden">
+                            <summary>Saved result files</summary>
+                            <pre id="fullTestOutputPaths">-</pre>
+                        </details>
+                    </div>
+                </section>
+            </div>
+
+            <section class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-label">Predicted Label</span>
+                    <strong id="statPredicted">-</strong>
+                    <small id="statPredictedSub">Waiting</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">True Label</span>
+                    <strong id="statTrue">-</strong>
+                    <small id="statTrueSub">Waiting</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Test Samples</span>
+                    <strong id="statSamples">-</strong>
+                    <small id="statSamplesSub">Dataset</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">Deployment</span>
+                    <strong id="deploymentNameCenter">-</strong>
+                    <small>PYNQ / Integer</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">INT8 Layers</span>
+                    <strong id="int8CountCenter">-</strong>
+                    <small id="int8Percent">-</small>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-label">INT4 Layers</span>
+                    <strong id="int4CountCenter">-</strong>
+                    <small id="int4Percent">-</small>
+                </div>
+            </section>
+        </section>
+
+        <aside class="right-column">
+            <section class="panel nas-panel">
+                <div class="panel-header between align-top">
+                    <div>
+                        <h2>NAS Architecture (Current Best)</h2>
+                    </div>
+                    <span class="best-tag">Best Model</span>
+                </div>
+
+                <div class="overview-list">
+                    <div class="overview-item"><span>Deployment</span><strong id="deploymentName">-</strong></div>
+                    <div class="overview-item"><span>Weighted Layers</span><strong id="layerCount">-</strong></div>
+                    <div class="overview-item"><span>INT8 Layers</span><strong id="int8Count">-</strong></div>
+                    <div class="overview-item"><span>INT4 Layers</span><strong id="int4Count">-</strong></div>
+                </div>
+
+                <div class="section-box">
+                    <div class="section-title">Architecture Details</div>
+                    <div id="architectureFlow" class="architecture-flow"></div>
+                </div>
+            </section>
+
+            <section class="panel search-panel">
+                <div class="panel-header between align-top">
+                    <div>
+                        <h2>Hardware-Aware Architecture Search</h2>
+                    </div>
+                    <span class="best-tag">PYNQ-Z2</span>
+                </div>
+
+                <div class="nas-explain-box">
+                    <strong>What NAS changes</strong>
+                    <span>
+                        Kernel triplet and output-channel width of Block 1 → Block 4.
+                    </span>
+                </div>
+
+                <div class="input-group tight">
+                    <label>Kernel Candidates</label>
+
+                    <div class="choice-row">
+                        <label class="choice chip-choice">
+                            <input type="checkbox" class="kernel-option" value="3" checked>
+                            <span>K3</span>
+                        </label>
+
+                        <label class="choice chip-choice">
+                            <input type="checkbox" class="kernel-option" value="5" checked>
+                            <span>K5</span>
+                        </label>
+
+                        <label class="choice chip-choice">
+                            <input type="checkbox" class="kernel-option" value="7" checked>
+                            <span>K7</span>
+                        </label>
+
+                        <label class="choice chip-choice">
+                            <input type="checkbox" class="kernel-option" value="9" checked>
+                            <span>K9</span>
+                        </label>
+                    </div>
+
+                    <div class="small-note">
+                        Each Inception block has 3 convolution branches. NAS samples 3 kernels from this set for each block.
+                    </div>
+                </div>
+
+                <div class="input-group tight">
+                    <label>Channel Candidates</label>
+                    <input id="nasChannels" value="4,6,8,12,14,16,24,28,32,48,64">
+
+                    <div class="small-note">
+                        One output-channel width is selected for each of Block 1, 2, 3 and 4.
+                    </div>
+                </div>
+
+                <div class="constraint-grid nas-training-grid">
+                    <div class="input-group tight">
+                        <label>Trials</label>
+                        <input id="nasTrials" type="number" value="20" min="1">
+                    </div>
+
+                    <div class="input-group tight">
+                        <label>Epochs / Candidate</label>
+                        <input id="nasEpochs" type="number" value="5" min="1">
+                    </div>
+                </div>
+
+                <div class="input-group tight">
+                    <label>Best-model Objective</label>
+
+                    <select id="nasObjective">
+                        <option value="balanced">
+                            Balanced: Macro F1 + Params + MACs
+                        </option>
+
+                        <option value="macro_f1">
+                            Highest Macro F1
+                        </option>
+
+                        <option value="efficient">
+                            Lowest MACs within 0.5% F1 of best
+                        </option>
+                    </select>
+                </div>
+
+                <div class="nas-fixed-box">
+                    <strong>Fixed during this search</strong>
+
+                    <div class="nas-fixed-grid">
+                        <span>4 residual Inception blocks</span>
+                        <span>Stem / pooling / residual / head graph</span>
+                        <span>Dilation pattern defined by the model template</span>
+                        <span>PYNQ bitstream and physical LUT / BRAM / DSP usage</span>
+                        <span>40 MHz FPGA clock</span>
+                        <span>INT4 / INT8 assignment is a later deployment step</span>
+                    </div>
+                </div>
+
+                <div id="nasActivityCard" class="nas-activity-card idle">
+                    <div class="nas-activity-top">
+                        <div class="nas-activity-title">
+                            <span id="nasActivityLight" class="nas-activity-light"></span>
+
+                            <div>
+                                <strong id="nasActivityTitle">NAS Idle</strong>
+                                <span id="nasActivitySubtitle">
+                                    Waiting for architecture search.
+                                </span>
+                            </div>
+                        </div>
+
+                        <span id="nasActivityPercent" class="nas-activity-percent">
+                            0%
+                        </span>
+                    </div>
+
+                    <div class="nas-progress-track">
+                        <div id="nasProgressBar" class="nas-progress-bar"></div>
+                    </div>
+
+                    <div class="nas-activity-grid">
+                        <div class="nas-activity-metric">
+                            <span>Candidate</span>
+                            <strong id="nasCurrentCandidate">-</strong>
+                        </div>
+
+                        <div class="nas-activity-metric">
+                            <span>Completed</span>
+                            <strong id="nasCompletedCandidates">0 / 0</strong>
+                        </div>
+
+                        <div class="nas-activity-metric">
+                            <span>Status</span>
+                            <strong id="nasActivityStatus">Idle</strong>
+                        </div>
+                    </div>
+
+                    <div id="nasCurrentArchitecture" class="nas-current-architecture">
+                        No candidate is being evaluated.
+                    </div>
+                </div>
+
+                <button id="startNasButton" class="primary-button full-width">
+                    Start Architecture Search
+                </button>
+
+                <div id="nasState" class="message-box compact-box">
+                    No NAS job started.
+                </div>
+
+                <details class="details-box">
+                    <summary>NAS job details</summary>
+                    <pre id="nasJobJson">No job.</pre>
+                </details>
+            </section>
+
+            <section class="panel candidate-panel">
+                <div class="panel-header between align-top">
+                    <div>
+                        <h2>NAS Candidates</h2>
+                        <div class="small-note">
+                            Review and select any completed architecture, not only the best candidate.
+                        </div>
+                    </div>
+
+                    <button id="refreshCandidatesButton" class="icon-button" title="Reload candidates">
+                        ↻
+                    </button>
+                </div>
+
+                <div class="candidate-control-grid">
+                    <div class="input-group tight">
+                        <label>NAS Search Run</label>
+                        <select id="candidateJobSelect">
+                            <option value="">No search run</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group tight">
+                        <label>Candidate</label>
+                        <select id="candidateSelect">
+                            <option value="">No candidate</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="candidateNotice" class="message-box compact-box">
+                    Loading candidates...
+                </div>
+
+                <div id="candidateSummaryCard" class="candidate-summary-card hidden">
+                    <div class="candidate-summary-head">
+                        <div>
+                            <div class="candidate-title-line">
+                                <strong id="candidateDisplayName">Candidate -</strong>
+                                <span id="candidateBestBadge" class="candidate-badge best-badge hidden">
+                                    BEST
+                                </span>
+                                <span id="candidateSelectedBadge" class="candidate-badge selected-badge hidden">
+                                    SELECTED
+                                </span>
+                            </div>
+
+                            <div id="candidateStatusText" class="candidate-status-text">
+                                Status: -
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="candidate-metric-grid">
+                        <div class="candidate-metric">
+                            <span>Macro F1</span>
+                            <strong id="candidateF1">-</strong>
+                        </div>
+
+                        <div class="candidate-metric">
+                            <span>Accuracy</span>
+                            <strong id="candidateAccuracy">-</strong>
+                        </div>
+
+                        <div class="candidate-metric">
+                            <span>Params</span>
+                            <strong id="candidateParams">-</strong>
+                        </div>
+
+                        <div class="candidate-metric">
+                            <span>MACs</span>
+                            <strong id="candidateMacs">-</strong>
+                        </div>
+
+                        <div class="candidate-metric">
+                            <span>Checkpoint</span>
+                            <strong id="candidateCheckpointStatus">-</strong>
+                        </div>
+
+                        <div class="candidate-metric">
+                            <span>Epochs Ran</span>
+                            <strong id="candidateEpochsRan">-</strong>
+                        </div>
+                    </div>
+
+                    <div id="candidateCheckpointPath" class="small-note candidate-checkpoint-path">
+                        Checkpoint: -
+                    </div>
+
+                    <div class="candidate-section-title">
+                        Architecture changed by NAS
+                    </div>
+
+                    <div id="candidateArchitectureGrid" class="candidate-architecture-grid">
+                    </div>
+
+                    <div class="candidate-fixed-note">
+                        <strong>Unchanged:</strong>
+                        Stem, pooling, residual connections, head, dilation template and FPGA bitstream.
+                    </div>
+
+                    <button id="selectCandidateButton" class="secondary-button full-width candidate-select-button">
+                        Select Candidate for Next Stage
+                    </button>
+
+                    <div id="candidateSelectionInfo" class="small-note candidate-selection-info">
+                        Selection does not overwrite the current deployed model. It records which architecture should continue to mixed-precision/deployment.
+                    </div>
+                </div>
+
+                <div class="candidate-section-title candidate-list-title">
+                    All candidates in this search
+                </div>
+
+                <div class="candidate-scroll">
+                    <table class="candidate-table">
+                        <thead>
+                            <tr>
+                                <th>Candidate</th>
+                                <th>F1</th>
+                                <th>Params</th>
+                                <th>MACs</th>
+                                <th>Checkpoint</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="candidateTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="panel layer-panel">
+                <div class="panel-header between align-top">
+                    <div>
+                        <h2>Layer Details</h2>
+                    </div>
+                </div>
+                <div class="section-title">Kernel / Channel / Precision</div>
+                <div id="int4LayerChips" class="int4-layer-chips"></div>
+                <div class="layer-table-wrap">
+                    <table class="layer-table">
+                        <thead>
+                            <tr><th>Layer</th><th>Bits</th><th>Shape</th></tr>
+                        </thead>
+                        <tbody id="layerTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+        </aside>
+    </main>
+</div>
+<script src="/static/app.js?v=5.19.0"></script>
+</body>
+</html>

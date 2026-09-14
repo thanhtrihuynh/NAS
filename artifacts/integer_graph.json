@@ -1,0 +1,1658 @@
+[
+  {
+    "index": 0,
+    "keras_name": "ecg_input",
+    "original_name": "ecg_input",
+    "wrapper_type": "InputLayer",
+    "inner_type": "InputLayer",
+    "input_sources": [],
+    "output_shape": [
+      null,
+      320,
+      1
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 1,
+    "keras_name": "qat_w_stem_conv",
+    "original_name": "stem_conv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "ecg_input"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": 8,
+    "manifest_input_source": "__input__"
+  },
+  {
+    "index": 2,
+    "keras_name": "stem_bn",
+    "original_name": "stem_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_stem_conv"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 3,
+    "keras_name": "qat_a_stem_act",
+    "original_name": "stem_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "stem_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 4,
+    "keras_name": "block1_pool",
+    "original_name": "block1_pool",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "qat_a_stem_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 5,
+    "keras_name": "qat_w_block1_b1_sepconv",
+    "original_name": "block1_b1_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "qat_a_stem_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": 8,
+    "manifest_input_source": "stem_act"
+  },
+  {
+    "index": 6,
+    "keras_name": "qat_w_block1_b2_sepconv",
+    "original_name": "block1_b2_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "qat_a_stem_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": 8,
+    "manifest_input_source": "stem_act"
+  },
+  {
+    "index": 7,
+    "keras_name": "qat_w_block1_b3_sepconv",
+    "original_name": "block1_b3_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "qat_a_stem_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": 8,
+    "manifest_input_source": "stem_act"
+  },
+  {
+    "index": 8,
+    "keras_name": "qat_w_block1_pool_proj",
+    "original_name": "block1_pool_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block1_pool"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": 8,
+    "manifest_input_source": "stem_act"
+  },
+  {
+    "index": 9,
+    "keras_name": "block1_b1_bn",
+    "original_name": "block1_b1_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block1_b1_sepconv"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 10,
+    "keras_name": "block1_b2_bn",
+    "original_name": "block1_b2_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block1_b2_sepconv"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 11,
+    "keras_name": "block1_b3_bn",
+    "original_name": "block1_b3_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block1_b3_sepconv"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 12,
+    "keras_name": "block1_pool_bn",
+    "original_name": "block1_pool_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block1_pool_proj"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 13,
+    "keras_name": "qat_a_block1_b1_act",
+    "original_name": "block1_b1_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block1_b1_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 14,
+    "keras_name": "qat_a_block1_b2_act",
+    "original_name": "block1_b2_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block1_b2_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 15,
+    "keras_name": "qat_a_block1_b3_act",
+    "original_name": "block1_b3_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block1_b3_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 16,
+    "keras_name": "qat_a_block1_pool_act",
+    "original_name": "block1_pool_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block1_pool_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      4
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 17,
+    "keras_name": "block1_concat",
+    "original_name": "block1_concat",
+    "wrapper_type": "Concatenate",
+    "inner_type": "Concatenate",
+    "input_sources": [
+      "qat_a_block1_b1_act",
+      "qat_a_block1_b2_act",
+      "qat_a_block1_b3_act",
+      "qat_a_block1_pool_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      16
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 18,
+    "keras_name": "qat_w_block1_out_proj",
+    "original_name": "block1_out_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block1_concat"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": 8,
+    "manifest_input_source": "block1_concat"
+  },
+  {
+    "index": 19,
+    "keras_name": "qat_a_block1_out_bn",
+    "original_name": "block1_out_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block1_out_proj"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 20,
+    "keras_name": "block1_add",
+    "original_name": "block1_add",
+    "wrapper_type": "Add",
+    "inner_type": "Add",
+    "input_sources": [
+      "qat_a_stem_act",
+      "qat_a_block1_out_bn"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 21,
+    "keras_name": "block1_act",
+    "original_name": "block1_act",
+    "wrapper_type": "Activation",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block1_add"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 22,
+    "keras_name": "block1_drop",
+    "original_name": "block1_drop",
+    "wrapper_type": "SpatialDropout1D",
+    "inner_type": "SpatialDropout1D",
+    "input_sources": [
+      "block1_act"
+    ],
+    "output_shape": [
+      null,
+      320,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 23,
+    "keras_name": "pool1",
+    "original_name": "pool1",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "block1_drop"
+    ],
+    "output_shape": [
+      null,
+      160,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 24,
+    "keras_name": "block2_pool",
+    "original_name": "block2_pool",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "pool1"
+    ],
+    "output_shape": [
+      null,
+      160,
+      8
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 25,
+    "keras_name": "qat_w_block2_b1_sepconv",
+    "original_name": "block2_b1_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool1"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool1"
+  },
+  {
+    "index": 26,
+    "keras_name": "qat_w_block2_b2_sepconv",
+    "original_name": "block2_b2_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool1"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool1"
+  },
+  {
+    "index": 27,
+    "keras_name": "qat_w_block2_b3_sepconv",
+    "original_name": "block2_b3_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool1"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": 4,
+    "manifest_input_source": "pool1"
+  },
+  {
+    "index": 28,
+    "keras_name": "qat_w_block2_pool_proj",
+    "original_name": "block2_pool_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block2_pool"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool1"
+  },
+  {
+    "index": 29,
+    "keras_name": "block2_b1_bn",
+    "original_name": "block2_b1_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_b1_sepconv"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 30,
+    "keras_name": "block2_b2_bn",
+    "original_name": "block2_b2_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_b2_sepconv"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 31,
+    "keras_name": "block2_b3_bn",
+    "original_name": "block2_b3_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_b3_sepconv"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 32,
+    "keras_name": "block2_pool_bn",
+    "original_name": "block2_pool_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_pool_proj"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 33,
+    "keras_name": "qat_a_block2_b1_act",
+    "original_name": "block2_b1_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block2_b1_bn"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 34,
+    "keras_name": "qat_a_block2_b2_act",
+    "original_name": "block2_b2_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block2_b2_bn"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 35,
+    "keras_name": "qat_a_block2_b3_act",
+    "original_name": "block2_b3_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block2_b3_bn"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 36,
+    "keras_name": "qat_a_block2_pool_act",
+    "original_name": "block2_pool_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block2_pool_bn"
+    ],
+    "output_shape": [
+      null,
+      160,
+      6
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 37,
+    "keras_name": "block2_concat",
+    "original_name": "block2_concat",
+    "wrapper_type": "Concatenate",
+    "inner_type": "Concatenate",
+    "input_sources": [
+      "qat_a_block2_b1_act",
+      "qat_a_block2_b2_act",
+      "qat_a_block2_b3_act",
+      "qat_a_block2_pool_act"
+    ],
+    "output_shape": [
+      null,
+      160,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 38,
+    "keras_name": "qat_w_block2_shortcut",
+    "original_name": "block2_shortcut",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "pool1"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool1"
+  },
+  {
+    "index": 39,
+    "keras_name": "qat_w_block2_out_proj",
+    "original_name": "block2_out_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block2_concat"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": 8,
+    "manifest_input_source": "block2_concat"
+  },
+  {
+    "index": 40,
+    "keras_name": "qat_a_block2_shortcut_bn",
+    "original_name": "block2_shortcut_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_shortcut"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 41,
+    "keras_name": "qat_a_block2_out_bn",
+    "original_name": "block2_out_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block2_out_proj"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 42,
+    "keras_name": "block2_add",
+    "original_name": "block2_add",
+    "wrapper_type": "Add",
+    "inner_type": "Add",
+    "input_sources": [
+      "qat_a_block2_shortcut_bn",
+      "qat_a_block2_out_bn"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 43,
+    "keras_name": "block2_act",
+    "original_name": "block2_act",
+    "wrapper_type": "Activation",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block2_add"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 44,
+    "keras_name": "block2_drop",
+    "original_name": "block2_drop",
+    "wrapper_type": "SpatialDropout1D",
+    "inner_type": "SpatialDropout1D",
+    "input_sources": [
+      "block2_act"
+    ],
+    "output_shape": [
+      null,
+      160,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 45,
+    "keras_name": "pool2",
+    "original_name": "pool2",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "block2_drop"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 46,
+    "keras_name": "block3_pool",
+    "original_name": "block3_pool",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "pool2"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 47,
+    "keras_name": "qat_w_block3_b1_sepconv",
+    "original_name": "block3_b1_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool2"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool2"
+  },
+  {
+    "index": 48,
+    "keras_name": "qat_w_block3_b2_sepconv",
+    "original_name": "block3_b2_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool2"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": 4,
+    "manifest_input_source": "pool2"
+  },
+  {
+    "index": 49,
+    "keras_name": "qat_w_block3_b3_sepconv",
+    "original_name": "block3_b3_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool2"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool2"
+  },
+  {
+    "index": 50,
+    "keras_name": "qat_w_block3_pool_proj",
+    "original_name": "block3_pool_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block3_pool"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool2"
+  },
+  {
+    "index": 51,
+    "keras_name": "block3_b1_bn",
+    "original_name": "block3_b1_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_b1_sepconv"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 52,
+    "keras_name": "block3_b2_bn",
+    "original_name": "block3_b2_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_b2_sepconv"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 53,
+    "keras_name": "block3_b3_bn",
+    "original_name": "block3_b3_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_b3_sepconv"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 54,
+    "keras_name": "block3_pool_bn",
+    "original_name": "block3_pool_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_pool_proj"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 55,
+    "keras_name": "qat_a_block3_b1_act",
+    "original_name": "block3_b1_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block3_b1_bn"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 56,
+    "keras_name": "qat_a_block3_b2_act",
+    "original_name": "block3_b2_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block3_b2_bn"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 57,
+    "keras_name": "qat_a_block3_b3_act",
+    "original_name": "block3_b3_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block3_b3_bn"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 58,
+    "keras_name": "qat_a_block3_pool_act",
+    "original_name": "block3_pool_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block3_pool_bn"
+    ],
+    "output_shape": [
+      null,
+      80,
+      12
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 59,
+    "keras_name": "block3_concat",
+    "original_name": "block3_concat",
+    "wrapper_type": "Concatenate",
+    "inner_type": "Concatenate",
+    "input_sources": [
+      "qat_a_block3_b1_act",
+      "qat_a_block3_b2_act",
+      "qat_a_block3_b3_act",
+      "qat_a_block3_pool_act"
+    ],
+    "output_shape": [
+      null,
+      80,
+      48
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 60,
+    "keras_name": "qat_w_block3_shortcut",
+    "original_name": "block3_shortcut",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "pool2"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool2"
+  },
+  {
+    "index": 61,
+    "keras_name": "qat_w_block3_out_proj",
+    "original_name": "block3_out_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block3_concat"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": 8,
+    "manifest_input_source": "block3_concat"
+  },
+  {
+    "index": 62,
+    "keras_name": "qat_a_block3_shortcut_bn",
+    "original_name": "block3_shortcut_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_shortcut"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 63,
+    "keras_name": "qat_a_block3_out_bn",
+    "original_name": "block3_out_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block3_out_proj"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 64,
+    "keras_name": "block3_add",
+    "original_name": "block3_add",
+    "wrapper_type": "Add",
+    "inner_type": "Add",
+    "input_sources": [
+      "qat_a_block3_shortcut_bn",
+      "qat_a_block3_out_bn"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 65,
+    "keras_name": "block3_act",
+    "original_name": "block3_act",
+    "wrapper_type": "Activation",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block3_add"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 66,
+    "keras_name": "block3_drop",
+    "original_name": "block3_drop",
+    "wrapper_type": "SpatialDropout1D",
+    "inner_type": "SpatialDropout1D",
+    "input_sources": [
+      "block3_act"
+    ],
+    "output_shape": [
+      null,
+      80,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 67,
+    "keras_name": "pool3",
+    "original_name": "pool3",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "block3_drop"
+    ],
+    "output_shape": [
+      null,
+      40,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 68,
+    "keras_name": "block4_pool",
+    "original_name": "block4_pool",
+    "wrapper_type": "MaxPooling1D",
+    "inner_type": "MaxPooling1D",
+    "input_sources": [
+      "pool3"
+    ],
+    "output_shape": [
+      null,
+      40,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 69,
+    "keras_name": "qat_w_block4_b1_sepconv",
+    "original_name": "block4_b1_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool3"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": 4,
+    "manifest_input_source": "pool3"
+  },
+  {
+    "index": 70,
+    "keras_name": "qat_w_block4_b2_sepconv",
+    "original_name": "block4_b2_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool3"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": 4,
+    "manifest_input_source": "pool3"
+  },
+  {
+    "index": 71,
+    "keras_name": "qat_w_block4_b3_sepconv",
+    "original_name": "block4_b3_sepconv",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "SeparableConv1D",
+    "input_sources": [
+      "pool3"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool3"
+  },
+  {
+    "index": 72,
+    "keras_name": "qat_w_block4_pool_proj",
+    "original_name": "block4_pool_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block4_pool"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool3"
+  },
+  {
+    "index": 73,
+    "keras_name": "block4_b1_bn",
+    "original_name": "block4_b1_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_b1_sepconv"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 74,
+    "keras_name": "block4_b2_bn",
+    "original_name": "block4_b2_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_b2_sepconv"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 75,
+    "keras_name": "block4_b3_bn",
+    "original_name": "block4_b3_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_b3_sepconv"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 76,
+    "keras_name": "block4_pool_bn",
+    "original_name": "block4_pool_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_pool_proj"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 77,
+    "keras_name": "qat_a_block4_b1_act",
+    "original_name": "block4_b1_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block4_b1_bn"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 78,
+    "keras_name": "qat_a_block4_b2_act",
+    "original_name": "block4_b2_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block4_b2_bn"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 79,
+    "keras_name": "qat_a_block4_b3_act",
+    "original_name": "block4_b3_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block4_b3_bn"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 80,
+    "keras_name": "qat_a_block4_pool_act",
+    "original_name": "block4_pool_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block4_pool_bn"
+    ],
+    "output_shape": [
+      null,
+      40,
+      14
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 81,
+    "keras_name": "block4_concat",
+    "original_name": "block4_concat",
+    "wrapper_type": "Concatenate",
+    "inner_type": "Concatenate",
+    "input_sources": [
+      "qat_a_block4_b1_act",
+      "qat_a_block4_b2_act",
+      "qat_a_block4_b3_act",
+      "qat_a_block4_pool_act"
+    ],
+    "output_shape": [
+      null,
+      40,
+      56
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 82,
+    "keras_name": "qat_w_block4_shortcut",
+    "original_name": "block4_shortcut",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "pool3"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": 8,
+    "manifest_input_source": "pool3"
+  },
+  {
+    "index": 83,
+    "keras_name": "qat_w_block4_out_proj",
+    "original_name": "block4_out_proj",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Conv1D",
+    "input_sources": [
+      "block4_concat"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": 8,
+    "manifest_input_source": "block4_concat"
+  },
+  {
+    "index": 84,
+    "keras_name": "qat_a_block4_shortcut_bn",
+    "original_name": "block4_shortcut_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_shortcut"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 85,
+    "keras_name": "qat_a_block4_out_bn",
+    "original_name": "block4_out_bn",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_block4_out_proj"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 86,
+    "keras_name": "block4_add",
+    "original_name": "block4_add",
+    "wrapper_type": "Add",
+    "inner_type": "Add",
+    "input_sources": [
+      "qat_a_block4_shortcut_bn",
+      "qat_a_block4_out_bn"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 87,
+    "keras_name": "block4_act",
+    "original_name": "block4_act",
+    "wrapper_type": "Activation",
+    "inner_type": "Activation",
+    "input_sources": [
+      "block4_add"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 88,
+    "keras_name": "block4_drop",
+    "original_name": "block4_drop",
+    "wrapper_type": "SpatialDropout1D",
+    "inner_type": "SpatialDropout1D",
+    "input_sources": [
+      "block4_act"
+    ],
+    "output_shape": [
+      null,
+      40,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 89,
+    "keras_name": "gap",
+    "original_name": "gap",
+    "wrapper_type": "GlobalAveragePooling1D",
+    "inner_type": "GlobalAveragePooling1D",
+    "input_sources": [
+      "block4_drop"
+    ],
+    "output_shape": [
+      null,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 90,
+    "keras_name": "gmp",
+    "original_name": "gmp",
+    "wrapper_type": "GlobalMaxPooling1D",
+    "inner_type": "GlobalMaxPooling1D",
+    "input_sources": [
+      "block4_drop"
+    ],
+    "output_shape": [
+      null,
+      28
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 91,
+    "keras_name": "head_concat",
+    "original_name": "head_concat",
+    "wrapper_type": "Concatenate",
+    "inner_type": "Concatenate",
+    "input_sources": [
+      "gap",
+      "gmp"
+    ],
+    "output_shape": [
+      null,
+      56
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 92,
+    "keras_name": "qat_w_head_dense",
+    "original_name": "head_dense",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Dense",
+    "input_sources": [
+      "head_concat"
+    ],
+    "output_shape": [
+      null,
+      24
+    ],
+    "bits": 8,
+    "manifest_input_source": "head_concat"
+  },
+  {
+    "index": 93,
+    "keras_name": "head_bn",
+    "original_name": "head_bn",
+    "wrapper_type": "BatchNormalization",
+    "inner_type": "BatchNormalization",
+    "input_sources": [
+      "qat_w_head_dense"
+    ],
+    "output_shape": [
+      null,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 94,
+    "keras_name": "qat_a_head_act",
+    "original_name": "head_act",
+    "wrapper_type": "QATActivationWrapper",
+    "inner_type": "Activation",
+    "input_sources": [
+      "head_bn"
+    ],
+    "output_shape": [
+      null,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 95,
+    "keras_name": "head_dropout",
+    "original_name": "head_dropout",
+    "wrapper_type": "Dropout",
+    "inner_type": "Dropout",
+    "input_sources": [
+      "qat_a_head_act"
+    ],
+    "output_shape": [
+      null,
+      24
+    ],
+    "bits": null,
+    "manifest_input_source": null
+  },
+  {
+    "index": 96,
+    "keras_name": "qat_w_class_output",
+    "original_name": "class_output",
+    "wrapper_type": "QATWeightWrapper",
+    "inner_type": "Dense",
+    "input_sources": [
+      "head_dropout"
+    ],
+    "output_shape": [
+      null,
+      5
+    ],
+    "bits": 8,
+    "manifest_input_source": "head_act"
+  }
+]

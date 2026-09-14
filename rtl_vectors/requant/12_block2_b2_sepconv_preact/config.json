@@ -1,0 +1,10 @@
+{
+  "index": 12,
+  "name": "block2_b2_sepconv_preact",
+  "source_layer": "block2_b2_sepconv",
+  "stage": "preactivation",
+  "multiplier": 22233547,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

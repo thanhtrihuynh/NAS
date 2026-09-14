@@ -1,0 +1,485 @@
+{
+  "stem_conv": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.008201397310091755,
+    "kernel_shape": [
+      7,
+      1,
+      8
+    ]
+  },
+  "block1_b1_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.0028121971239255168,
+    "pointwise_scale": 0.016420446981595258,
+    "depthwise_shape": [
+      3,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      4
+    ]
+  },
+  "block1_b2_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.001998711054719339,
+    "pointwise_scale": 0.02114965408805787,
+    "depthwise_shape": [
+      5,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      4
+    ]
+  },
+  "block1_b3_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.003304275940722368,
+    "pointwise_scale": 0.02295448648647999,
+    "depthwise_shape": [
+      7,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      4
+    ]
+  },
+  "block1_pool_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.00905760911505992,
+    "kernel_shape": [
+      1,
+      8,
+      4
+    ]
+  },
+  "block1_out_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.008108344603711225,
+    "kernel_shape": [
+      1,
+      16,
+      8
+    ]
+  },
+  "block2_b1_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.0028143963945193554,
+    "pointwise_scale": 0.018987937236395407,
+    "depthwise_shape": [
+      3,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      6
+    ]
+  },
+  "block2_b2_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.0030448401537467177,
+    "pointwise_scale": 0.015926702754704033,
+    "depthwise_shape": [
+      5,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      6
+    ]
+  },
+  "block2_b3_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 4,
+    "bn_folded": true,
+    "depthwise_scale": 0.0559149512222835,
+    "pointwise_scale": 0.20515028067997523,
+    "depthwise_shape": [
+      9,
+      8,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      8,
+      6
+    ]
+  },
+  "block2_pool_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.007652817748662994,
+    "kernel_shape": [
+      1,
+      8,
+      6
+    ]
+  },
+  "block2_shortcut": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.005620008847844882,
+    "kernel_shape": [
+      1,
+      8,
+      12
+    ]
+  },
+  "block2_out_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.007986158836544969,
+    "kernel_shape": [
+      1,
+      24,
+      12
+    ]
+  },
+  "block3_b1_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.0027874626043274645,
+    "pointwise_scale": 0.022857519585316576,
+    "depthwise_shape": [
+      3,
+      12,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      12,
+      12
+    ]
+  },
+  "block3_b2_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 4,
+    "bn_folded": true,
+    "depthwise_scale": 0.047591486147471836,
+    "pointwise_scale": 0.44219040870666504,
+    "depthwise_shape": [
+      5,
+      12,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      12,
+      12
+    ]
+  },
+  "block3_b3_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.003222089114151602,
+    "pointwise_scale": 0.01717149742006317,
+    "depthwise_shape": [
+      9,
+      12,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      12,
+      12
+    ]
+  },
+  "block3_pool_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.007574392585303839,
+    "kernel_shape": [
+      1,
+      12,
+      12
+    ]
+  },
+  "block3_shortcut": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.004743649264958899,
+    "kernel_shape": [
+      1,
+      12,
+      24
+    ]
+  },
+  "block3_out_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.006664353562152292,
+    "kernel_shape": [
+      1,
+      48,
+      24
+    ]
+  },
+  "block4_b1_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 4,
+    "bn_folded": true,
+    "depthwise_scale": 0.04337151987212045,
+    "pointwise_scale": 0.33833837509155273,
+    "depthwise_shape": [
+      3,
+      24,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      24,
+      14
+    ]
+  },
+  "block4_b2_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 4,
+    "bn_folded": true,
+    "depthwise_scale": 0.05306751813207354,
+    "pointwise_scale": 0.2946990898677281,
+    "depthwise_shape": [
+      7,
+      24,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      24,
+      14
+    ]
+  },
+  "block4_b3_sepconv": {
+    "type": "SeparableConv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "depthwise_scale": 0.0031222560274319386,
+    "pointwise_scale": 0.013026020658297801,
+    "depthwise_shape": [
+      9,
+      24,
+      1
+    ],
+    "pointwise_shape": [
+      1,
+      24,
+      14
+    ]
+  },
+  "block4_pool_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.003183097116590485,
+    "kernel_shape": [
+      1,
+      24,
+      14
+    ]
+  },
+  "block4_shortcut": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.0025084626486920935,
+    "kernel_shape": [
+      1,
+      24,
+      28
+    ]
+  },
+  "block4_out_proj": {
+    "type": "Conv1D",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.0076293457211471915,
+    "kernel_shape": [
+      1,
+      56,
+      28
+    ]
+  },
+  "head_dense": {
+    "type": "Dense",
+    "weight_bits": 8,
+    "bn_folded": true,
+    "weight_scale": 0.022060856105774407,
+    "kernel_shape": [
+      56,
+      24
+    ]
+  },
+  "class_output": {
+    "type": "Dense",
+    "weight_bits": 8,
+    "bn_folded": false,
+    "weight_scale": 0.012858514710674136,
+    "kernel_shape": [
+      24,
+      5
+    ]
+  },
+  "_activation_scales": {
+    "stem_act": {
+      "bits": 8,
+      "max_abs": 11.22081470489502,
+      "scale": 0.08835287169208676
+    },
+    "block1_b1_act": {
+      "bits": 8,
+      "max_abs": 10.355667114257812,
+      "scale": 0.08154068593903789
+    },
+    "block1_b2_act": {
+      "bits": 8,
+      "max_abs": 14.474739074707031,
+      "scale": 0.11397432342289
+    },
+    "block1_b3_act": {
+      "bits": 8,
+      "max_abs": 14.517292976379395,
+      "scale": 0.11430939351479838
+    },
+    "block1_pool_act": {
+      "bits": 8,
+      "max_abs": 11.389723777770996,
+      "scale": 0.08968286439189761
+    },
+    "block1_out_bn": {
+      "bits": 8,
+      "max_abs": 23.046234130859375,
+      "scale": 0.18146641047920767
+    },
+    "block2_b1_act": {
+      "bits": 8,
+      "max_abs": 12.781167030334473,
+      "scale": 0.1006391104750746
+    },
+    "block2_b2_act": {
+      "bits": 8,
+      "max_abs": 8.455662727355957,
+      "scale": 0.06658002147524375
+    },
+    "block2_b3_act": {
+      "bits": 4,
+      "max_abs": 10.796098709106445,
+      "scale": 1.542299815586635
+    },
+    "block2_pool_act": {
+      "bits": 8,
+      "max_abs": 7.135853290557861,
+      "scale": 0.05618782118549497
+    },
+    "block2_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 12.581833839416504,
+      "scale": 0.09906955779068113
+    },
+    "block2_out_bn": {
+      "bits": 8,
+      "max_abs": 13.710283279418945,
+      "scale": 0.10795498645211768
+    },
+    "block3_b1_act": {
+      "bits": 8,
+      "max_abs": 6.681834697723389,
+      "scale": 0.05261287163561723
+    },
+    "block3_b2_act": {
+      "bits": 4,
+      "max_abs": 9.258566856384277,
+      "scale": 1.3226524080548967
+    },
+    "block3_b3_act": {
+      "bits": 8,
+      "max_abs": 9.545854568481445,
+      "scale": 0.0751642092006413
+    },
+    "block3_pool_act": {
+      "bits": 8,
+      "max_abs": 7.805037975311279,
+      "scale": 0.061456991931584874
+    },
+    "block3_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 9.448386192321777,
+      "scale": 0.07439674167182501
+    },
+    "block3_out_bn": {
+      "bits": 8,
+      "max_abs": 9.902713775634766,
+      "scale": 0.07797412421759659
+    },
+    "block4_b1_act": {
+      "bits": 4,
+      "max_abs": 5.535862922668457,
+      "scale": 0.7908375603812081
+    },
+    "block4_b2_act": {
+      "bits": 4,
+      "max_abs": 6.840776443481445,
+      "scale": 0.9772537776402065
+    },
+    "block4_b3_act": {
+      "bits": 8,
+      "max_abs": 6.380103588104248,
+      "scale": 0.0502370361268051
+    },
+    "block4_pool_act": {
+      "bits": 8,
+      "max_abs": 4.931914329528809,
+      "scale": 0.03883397109865203
+    },
+    "block4_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 5.542716979980469,
+      "scale": 0.043643440787247786
+    },
+    "block4_out_bn": {
+      "bits": 8,
+      "max_abs": 7.856363296508789,
+      "scale": 0.06186112831896684
+    },
+    "head_act": {
+      "bits": 8,
+      "max_abs": 4.082958698272705,
+      "scale": 0.03214928108876146
+    }
+  }
+}

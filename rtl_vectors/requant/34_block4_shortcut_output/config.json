@@ -1,0 +1,10 @@
+{
+  "index": 34,
+  "name": "block4_shortcut_output",
+  "source_layer": "block4_shortcut",
+  "stage": "output",
+  "multiplier": 9622929,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

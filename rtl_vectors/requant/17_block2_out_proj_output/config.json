@@ -1,0 +1,10 @@
+{
+  "index": 17,
+  "name": "block2_out_proj_output",
+  "source_layer": "block2_out_proj",
+  "stage": "output",
+  "multiplier": 16017137,
+  "shift": 31,
+  "output_bits": 8,
+  "num_vectors": 339
+}

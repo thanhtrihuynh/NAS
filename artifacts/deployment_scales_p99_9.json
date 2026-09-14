@@ -1,0 +1,583 @@
+{
+  "method": "symmetric_max_abs",
+  "num_calibration_samples": 4096,
+  "input_bits": 8,
+  "tensor_scales": {
+    "__input__": {
+      "bits": 8,
+      "max_abs": 8.070563316345215,
+      "scale": 0.06354774264838751
+    },
+    "stem_conv": {
+      "bits": 8,
+      "max_abs": 5.665113925933838,
+      "scale": 0.04460719626719557
+    },
+    "stem_bn": {
+      "bits": 8,
+      "max_abs": 11.804522514343262,
+      "scale": 0.09294899617593119
+    },
+    "stem_act": {
+      "bits": 8,
+      "max_abs": 11.22081470489502,
+      "scale": 0.08835287169208676
+    },
+    "block1_pool": {
+      "bits": 8,
+      "max_abs": 11.22081470489502,
+      "scale": 0.08835287169208676
+    },
+    "block1_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 3.0771381855010986,
+      "scale": 0.024229434531504713
+    },
+    "block1_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 2.3573365211486816,
+      "scale": 0.0185617048909345
+    },
+    "block1_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.3597681522369385,
+      "scale": 0.026454867340448336
+    },
+    "block1_pool_proj": {
+      "bits": 8,
+      "max_abs": 5.2701263427734375,
+      "scale": 0.04149705781711368
+    },
+    "block1_b1_bn": {
+      "bits": 8,
+      "max_abs": 11.22869873046875,
+      "scale": 0.08841495063361221
+    },
+    "block1_b2_bn": {
+      "bits": 8,
+      "max_abs": 14.474739074707031,
+      "scale": 0.11397432342289
+    },
+    "block1_b3_bn": {
+      "bits": 8,
+      "max_abs": 22.002050399780273,
+      "scale": 0.17324449133685255
+    },
+    "block1_pool_bn": {
+      "bits": 8,
+      "max_abs": 14.335380554199219,
+      "scale": 0.11287701223778912
+    },
+    "block1_b1_act": {
+      "bits": 8,
+      "max_abs": 10.355667114257812,
+      "scale": 0.08154068593903789
+    },
+    "block1_b2_act": {
+      "bits": 8,
+      "max_abs": 14.474739074707031,
+      "scale": 0.11397432342289
+    },
+    "block1_b3_act": {
+      "bits": 8,
+      "max_abs": 14.517292976379395,
+      "scale": 0.11430939351479838
+    },
+    "block1_pool_act": {
+      "bits": 8,
+      "max_abs": 11.389723777770996,
+      "scale": 0.08968286439189761
+    },
+    "block1_concat": {
+      "bits": 8,
+      "max_abs": 14.517292976379395,
+      "scale": 0.11430939351479838
+    },
+    "block1_out_proj": {
+      "bits": 8,
+      "max_abs": 10.653547286987305,
+      "scale": 0.08388619911013626
+    },
+    "block1_out_bn": {
+      "bits": 8,
+      "max_abs": 23.046234130859375,
+      "scale": 0.18146641047920767
+    },
+    "block1_add": {
+      "bits": 8,
+      "max_abs": 17.57942008972168,
+      "scale": 0.13842063062772977
+    },
+    "block1_act": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block1_drop": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "pool1": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block2_pool": {
+      "bits": 8,
+      "max_abs": 16.44839859008789,
+      "scale": 0.1295149495282511
+    },
+    "block2_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 2.368079423904419,
+      "scale": 0.018646294676412746
+    },
+    "block2_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 2.897498607635498,
+      "scale": 0.022814949666421246
+    },
+    "block2_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.8184146881103516,
+      "scale": 0.03006625738669568
+    },
+    "block2_pool_proj": {
+      "bits": 8,
+      "max_abs": 8.863840103149414,
+      "scale": 0.06979401656023161
+    },
+    "block2_b1_bn": {
+      "bits": 8,
+      "max_abs": 14.01962661743164,
+      "scale": 0.11039076076717827
+    },
+    "block2_b2_bn": {
+      "bits": 8,
+      "max_abs": 12.134074211120605,
+      "scale": 0.0955438914261465
+    },
+    "block2_b3_bn": {
+      "bits": 8,
+      "max_abs": 10.796098709106445,
+      "scale": 0.08500865125280666
+    },
+    "block2_pool_bn": {
+      "bits": 8,
+      "max_abs": 14.147634506225586,
+      "scale": 0.11139869689941406
+    },
+    "block2_b1_act": {
+      "bits": 8,
+      "max_abs": 12.8539457321167,
+      "scale": 0.10121217111902912
+    },
+    "block2_b2_act": {
+      "bits": 8,
+      "max_abs": 8.391708374023438,
+      "scale": 0.06607644388994832
+    },
+    "block2_b3_act": {
+      "bits": 4,
+      "max_abs": 10.796098709106445,
+      "clip_abs": 6.375473499298096,
+      "scale": 0.9107819284711566,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block2_pool_act": {
+      "bits": 8,
+      "max_abs": 7.130914688110352,
+      "scale": 0.056148934552050014
+    },
+    "block2_concat": {
+      "bits": 8,
+      "max_abs": 12.8539457321167,
+      "scale": 0.10121217111902912
+    },
+    "block2_shortcut": {
+      "bits": 8,
+      "max_abs": 9.894856452941895,
+      "scale": 0.07791225553497555
+    },
+    "block2_out_proj": {
+      "bits": 8,
+      "max_abs": 6.079833030700684,
+      "scale": 0.04787270102913924
+    },
+    "block2_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 12.581833839416504,
+      "scale": 0.09906955779068113
+    },
+    "block2_out_bn": {
+      "bits": 8,
+      "max_abs": 13.763198852539062,
+      "scale": 0.1083716445081816
+    },
+    "block2_add": {
+      "bits": 8,
+      "max_abs": 19.982093811035156,
+      "scale": 0.1573393213467335
+    },
+    "block2_act": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block2_drop": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "pool2": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block3_pool": {
+      "bits": 8,
+      "max_abs": 15.192892074584961,
+      "scale": 0.11962907145342488
+    },
+    "block3_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 1.6998354196548462,
+      "scale": 0.013384530863423985
+    },
+    "block3_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 1.7765564918518066,
+      "scale": 0.013988633794108713
+    },
+    "block3_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 2.640021800994873,
+      "scale": 0.020787573236180103
+    },
+    "block3_pool_proj": {
+      "bits": 8,
+      "max_abs": 8.429038047790527,
+      "scale": 0.06637037832905927
+    },
+    "block3_b1_bn": {
+      "bits": 8,
+      "max_abs": 12.19692611694336,
+      "scale": 0.09603878832238866
+    },
+    "block3_b2_bn": {
+      "bits": 8,
+      "max_abs": 12.905192375183105,
+      "scale": 0.10161568799356777
+    },
+    "block3_b3_bn": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_pool_bn": {
+      "bits": 8,
+      "max_abs": 12.00783634185791,
+      "scale": 0.09454989245557409
+    },
+    "block3_b1_act": {
+      "bits": 8,
+      "max_abs": 6.712452411651611,
+      "scale": 0.052853955997256785
+    },
+    "block3_b2_act": {
+      "bits": 4,
+      "max_abs": 9.27634334564209,
+      "clip_abs": 5.0656418800354,
+      "scale": 0.7236631257193429,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b3_act": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_pool_act": {
+      "bits": 8,
+      "max_abs": 7.775599002838135,
+      "scale": 0.06122518899872547
+    },
+    "block3_concat": {
+      "bits": 8,
+      "max_abs": 9.706843376159668,
+      "scale": 0.07643183760755644
+    },
+    "block3_shortcut": {
+      "bits": 8,
+      "max_abs": 6.815467834472656,
+      "scale": 0.053665101058839815
+    },
+    "block3_out_proj": {
+      "bits": 8,
+      "max_abs": 5.885860919952393,
+      "scale": 0.04634536157442829
+    },
+    "block3_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 9.499245643615723,
+      "scale": 0.07479720979224978
+    },
+    "block3_out_bn": {
+      "bits": 8,
+      "max_abs": 9.808160781860352,
+      "scale": 0.07722961245559332
+    },
+    "block3_add": {
+      "bits": 8,
+      "max_abs": 13.533161163330078,
+      "scale": 0.10656032412070927
+    },
+    "block3_act": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block3_drop": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "pool3": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block4_pool": {
+      "bits": 8,
+      "max_abs": 9.748913764953613,
+      "scale": 0.07676310051144578
+    },
+    "block4_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 0.8807024359703064,
+      "scale": 0.006934664850159893
+    },
+    "block4_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 1.5176525115966797,
+      "scale": 0.011950019776351808
+    },
+    "block4_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 2.3085124492645264,
+      "scale": 0.01817726338003564
+    },
+    "block4_pool_proj": {
+      "bits": 8,
+      "max_abs": 6.847311019897461,
+      "scale": 0.05391583480234221
+    },
+    "block4_b1_bn": {
+      "bits": 8,
+      "max_abs": 6.377283096313477,
+      "scale": 0.05021482753002737
+    },
+    "block4_b2_bn": {
+      "bits": 8,
+      "max_abs": 7.039634704589844,
+      "scale": 0.05543019452432948
+    },
+    "block4_b3_bn": {
+      "bits": 8,
+      "max_abs": 6.673365592956543,
+      "scale": 0.052546185771311364
+    },
+    "block4_pool_bn": {
+      "bits": 8,
+      "max_abs": 7.866491794586182,
+      "scale": 0.06194088027233214
+    },
+    "block4_b1_act": {
+      "bits": 4,
+      "max_abs": 5.453510761260986,
+      "clip_abs": 3.2008209228515625,
+      "scale": 0.4572601318359375,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b2_act": {
+      "bits": 4,
+      "max_abs": 7.039634704589844,
+      "clip_abs": 3.7582027912139893,
+      "scale": 0.5368861130305699,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b3_act": {
+      "bits": 8,
+      "max_abs": 6.555839538574219,
+      "scale": 0.05162078376830093
+    },
+    "block4_pool_act": {
+      "bits": 8,
+      "max_abs": 4.8738579750061035,
+      "scale": 0.038376834448866956
+    },
+    "block4_concat": {
+      "bits": 8,
+      "max_abs": 7.039634704589844,
+      "scale": 0.05543019452432948
+    },
+    "block4_shortcut": {
+      "bits": 8,
+      "max_abs": 6.9155378341674805,
+      "scale": 0.05445305381234237
+    },
+    "block4_out_proj": {
+      "bits": 8,
+      "max_abs": 4.954633712768555,
+      "scale": 0.03901286388006736
+    },
+    "block4_shortcut_bn": {
+      "bits": 8,
+      "max_abs": 5.457408428192139,
+      "scale": 0.04297171990702471
+    },
+    "block4_out_bn": {
+      "bits": 8,
+      "max_abs": 7.692000389099121,
+      "scale": 0.060566932197630874
+    },
+    "block4_add": {
+      "bits": 8,
+      "max_abs": 9.035265922546387,
+      "scale": 0.07114382616178257
+    },
+    "block4_act": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "block4_drop": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "gap": {
+      "bits": 8,
+      "max_abs": 0.8324615359306335,
+      "scale": 0.0065548152435482955
+    },
+    "gmp": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "head_concat": {
+      "bits": 8,
+      "max_abs": 5.030486583709717,
+      "scale": 0.03961013058039147
+    },
+    "head_dense": {
+      "bits": 8,
+      "max_abs": 1.5199856758117676,
+      "scale": 0.011968391148124154
+    },
+    "head_bn": {
+      "bits": 8,
+      "max_abs": 4.196564674377441,
+      "scale": 0.03304381633368064
+    },
+    "head_act": {
+      "bits": 8,
+      "max_abs": 4.196507930755615,
+      "scale": 0.03304336953350878
+    },
+    "head_dropout": {
+      "bits": 8,
+      "max_abs": 4.196507930755615,
+      "scale": 0.03304336953350878
+    },
+    "class_output": {
+      "bits": 8,
+      "max_abs": 0.9994751811027527,
+      "scale": 0.007869883315769707
+    }
+  },
+  "separable_internal_scales": {
+    "block1_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 7.541182518005371,
+      "scale": 0.0593793899055541
+    },
+    "block1_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 5.4452595710754395,
+      "scale": 0.04287605961476724
+    },
+    "block1_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 6.051379680633545,
+      "scale": 0.04764865890262634
+    },
+    "block2_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 7.5153584480285645,
+      "scale": 0.05917605077187846
+    },
+    "block2_b2_sepconv": {
+      "bits": 8,
+      "max_abs": 7.887868404388428,
+      "scale": 0.06210920003455455
+    },
+    "block2_b3_sepconv": {
+      "bits": 4,
+      "max_abs": 5.597830772399902,
+      "clip_abs": 3.621155261993408,
+      "scale": 0.5173078945704869,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b1_sepconv": {
+      "bits": 8,
+      "max_abs": 3.3207268714904785,
+      "scale": 0.02614745568102739
+    },
+    "block3_b2_sepconv": {
+      "bits": 4,
+      "max_abs": 6.213369369506836,
+      "clip_abs": 3.327242612838745,
+      "scale": 0.4753203732626779,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block3_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 4.6759233474731445,
+      "scale": 0.03681829407459169
+    },
+    "block4_b1_sepconv": {
+      "bits": 4,
+      "max_abs": 2.3861358165740967,
+      "clip_abs": 1.248171091079712,
+      "scale": 0.17831015586853027,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b2_sepconv": {
+      "bits": 4,
+      "max_abs": 2.19008207321167,
+      "clip_abs": 1.3802260160446167,
+      "scale": 0.19717514514923096,
+      "calibration": "percentile",
+      "percentile": 99.9
+    },
+    "block4_b3_sepconv": {
+      "bits": 8,
+      "max_abs": 3.852466583251953,
+      "scale": 0.03033438254529097
+    }
+  },
+  "int4_percentile_calibration": {
+    "enabled": true,
+    "percentile": 99.9,
+    "samples": 4096
+  }
+}
