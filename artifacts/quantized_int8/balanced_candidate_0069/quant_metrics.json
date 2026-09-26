@@ -1,0 +1,10 @@
+{
+  "candidate_id": 69,
+  "role": "balanced",
+  "int8_val_accuracy": 0.9920719520319787,
+  "int8_val_macro_f1": 0.976907309443205,
+  "int8_val_macro_precision": 0.9710562202069871,
+  "int8_val_macro_recall": 0.9833143653757304,
+  "int8_model_size_bytes": 71472,
+  "int8_model_size_kb": 69.796875
+}

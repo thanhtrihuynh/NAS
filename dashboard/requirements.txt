@@ -1,0 +1,8 @@
+Flask>=3.0,<4
+numpy>=1.26
+pandas>=2.1
+requests>=2.31
+wfdb>=4.1
+
+# Required for real local INT8 .tflite inference
+tensorflow>=2.16

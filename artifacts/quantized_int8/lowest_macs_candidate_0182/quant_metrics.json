@@ -1,0 +1,10 @@
+{
+  "candidate_id": 182,
+  "role": "lowest_macs",
+  "int8_val_accuracy": 0.9816788807461693,
+  "int8_val_macro_f1": 0.9532216907859903,
+  "int8_val_macro_precision": 0.9506556007588951,
+  "int8_val_macro_recall": 0.9562383002620013,
+  "int8_model_size_bytes": 59712,
+  "int8_model_size_kb": 58.3125
+}

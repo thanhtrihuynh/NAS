@@ -1,0 +1,8 @@
+{
+  "baseline_name": "Previous fixed Mini-Inception baseline",
+  "macro_f1": 0.974669,
+  "accuracy": 0.991672,
+  "params": 6473,
+  "macs": 432120,
+  "note": "Historical validation reference. Retrain the clean baseline before the final comparison."
+}

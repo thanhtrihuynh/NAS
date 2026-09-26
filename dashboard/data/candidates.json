@@ -1,0 +1,62 @@
+[
+  {
+    "candidate_id": 8,
+    "role": "best_f1",
+    "label": "Best F1",
+    "purpose": "Highest classification quality",
+    "val_accuracy": 0.9937375083277815,
+    "val_macro_f1": 0.9803220910087423,
+    "params": 11205,
+    "macs": 606808,
+    "memory_mb": 0.01953125,
+    "int8_status": "PASS",
+    "int8_val_accuracy": 0.9938707528314457,
+    "int8_val_macro_f1": 0.9821370177712208,
+    "int8_model_size_kb": 72.53125
+  },
+  {
+    "candidate_id": 69,
+    "role": "balanced",
+    "label": "Balanced",
+    "purpose": "Trade-off between F1 and hardware cost",
+    "val_accuracy": 0.9924050632911392,
+    "val_macro_f1": 0.9773341281867994,
+    "params": 9173,
+    "macs": 541144,
+    "memory_mb": 0.01953125,
+    "int8_status": "PASS",
+    "int8_val_accuracy": 0.9920719520319787,
+    "int8_val_macro_f1": 0.976907309443205,
+    "int8_model_size_kb": 69.796875
+  },
+  {
+    "candidate_id": 182,
+    "role": "lowest_macs",
+    "label": "Lowest MACs",
+    "purpose": "Lowest computational cost",
+    "val_accuracy": 0.9813457694870087,
+    "val_macro_f1": 0.9537396566869439,
+    "params": 2933,
+    "macs": 212536,
+    "memory_mb": 0.01953125,
+    "int8_status": "PASS",
+    "int8_val_accuracy": 0.9816788807461693,
+    "int8_val_macro_f1": 0.9532216907859903,
+    "int8_model_size_kb": 58.3125
+  },
+  {
+    "candidate_id": 94,
+    "role": "lowest_params",
+    "label": "Lowest Params",
+    "purpose": "Smallest model footprint",
+    "val_accuracy": 0.9783477681545636,
+    "val_macro_f1": 0.947959245532801,
+    "params": 2561,
+    "macs": 232504,
+    "memory_mb": 0.01953125,
+    "int8_status": "PASS",
+    "int8_val_accuracy": 0.9785476349100599,
+    "int8_val_macro_f1": 0.9474567023268292,
+    "int8_model_size_kb": 56.328125
+  }
+]

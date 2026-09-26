@@ -1,0 +1,18 @@
+{
+  "population_size": 30,
+  "generations": 10,
+  "elite_count": 6,
+  "tournament_size": 3,
+  "mutation_rate": 0.35,
+  "crossover_rate": 0.7,
+  "epochs_per_candidate": 3,
+  "batch_size": 128,
+  "early_stop_patience": 2,
+  "learning_rate": 0.001,
+  "seed": 42,
+  "max_params": 12000,
+  "max_macs": 700000,
+  "max_memory_mb": 0.065,
+  "f1_tolerance": 0.005,
+  "max_proposal_attempts": 200000
+}

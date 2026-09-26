@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>ECG NAS Control Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">⌁</div>
+      <div><strong>ECG NAS</strong><span>FPGA Control</span></div>
+    </div>
+
+    <nav>
+      <button class="nav-btn active" data-view="prediction"><span>◉</span>ECG Prediction</button>
+      <button class="nav-btn" data-view="nas"><span>⚙</span>NAS Re-train</button>
+      <button class="nav-btn" data-view="fpga"><span>▦</span>FPGA Result</button>
+      <button class="nav-btn" data-view="compare"><span>≋</span>Compare 4 Models</button>
+    </nav>
+
+    <div class="side-status">
+      <div><span class="dot" id="datasetDot"></span><b id="datasetMode">Dataset</b></div>
+      <small id="datasetPathText">Checking source...</small>
+      <div><span class="dot" id="modelDot"></span><b id="runtimeStatus">INT8 runtime</b></div>
+      <div><span class="dot muted" id="pynqDot"></span><b id="pynqStatus">PYNQ not configured</b></div>
+      <div><span class="dot muted" id="nasBackendDot"></span><b id="nasBackendStatus">NAS backend</b></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1>ECG Hardware-Aware NAS Dashboard</h1>
+        <p>Beat inspection · NAS re-training · Candidate inference · PYNQ-Z2 benchmark</p>
+      </div>
+    </header>
+
+    <!-- VIEW 1 -->
+    <section class="view active" id="view-prediction">
+      <div class="section-title">
+        <div><span class="step">1</span><div><h2>Select ECG sample and beat</h2><p>Browse one long ECG signal, search by class, then choose a beat for inference.</p></div></div>
+      </div>
+
+      <article class="panel source-panel">
+        <div class="source-row source-row-search">
+          <label>Dataset split
+            <select id="splitSelect">
+              <option value="test">Test</option>
+              <option value="val">Validation</option>
+              <option value="train">Train</option>
+            </select>
+          </label>
+          <label class="grow">ECG sample / record
+            <select id="recordSelect"></select>
+          </label>
+          <button class="btn primary" id="loadRecord">Load sample</button>
+        </div>
+
+        <div class="class-search-row">
+          <label>Find beat class
+            <select id="classSelect">
+              <option value="ALL">All classes</option>
+              <option value="N">N</option>
+              <option value="L">L</option>
+              <option value="R">R</option>
+              <option value="V">V</option>
+              <option value="A">A</option>
+            </select>
+          </label>
+          <button class="btn subtle" id="findClass">Find first</button>
+          <button class="btn subtle" id="findNext">Find next</button>
+          <span class="class-match-info" id="classMatchInfo">Load a record to inspect class counts.</span>
+        </div>
+
+        <div class="source-meta"><span id="sourceBadge" class="badge">MIT-BIH</span><span id="recordMeta">No sample loaded.</span></div>
+      </article>
+
+      <article class="panel beat-browser-panel">
+        <div class="panel-head">
+          <div><h3>Beat timeline</h3><p>The beats are connected into one long ECG signal. Matching class frames are emphasized when a class filter is active.</p></div>
+          <div class="compact-info"><b id="beatCount">0 beats</b><span id="selectedBeatTop">No beat selected</span></div>
+        </div>
+        <div class="beat-scroll" id="beatScroll"><div class="timeline-stage" id="timelineStage"><svg id="timelineSvg" viewBox="0 0 1200 130" preserveAspectRatio="none"></svg><div class="beat-overlay" id="beatOverlay"></div></div></div>
+        <input id="beatScrollRange" class="scroll-range" type="range" min="0" max="100" value="0"/>
+      </article>
+
+      <div class="two-col simple-gap">
+        <article class="panel selected-beat-panel">
+          <div class="panel-head"><div><h3>Selected beat preview</h3><p id="selectedBeatLabel">Choose a beat from the full timeline above.</p></div><span class="badge soft" id="selectedBeatIndex">—</span></div>
+          <div class="beat-preview-wrap"><svg id="selectedBeatSvg" viewBox="0 0 620 220" preserveAspectRatio="none"></svg></div>
+          <div class="beat-details" id="beatDetails">
+            <span>Reference <b>—</b></span><span>Start <b>—</b></span><span>End <b>—</b></span><span>Samples <b>320</b></span>
+          </div>
+        </article>
+
+        <article class="panel model-panel">
+          <div class="panel-head"><div><h3>Model candidate</h3><p>Select the candidate according to the deployment objective.</p></div></div>
+          <label>Candidate
+            <select id="candidateSelect"></select>
+          </label>
+          <div class="model-purpose" id="modelPurpose">—</div>
+          <div class="model-stats">
+            <div><span>Val Accuracy</span><b id="mAccuracy">—</b></div>
+            <div><span>Macro F1</span><b id="mF1">—</b></div>
+            <div><span>Params</span><b id="mParams">—</b></div>
+            <div><span>MACs</span><b id="mMacs">—</b></div>
+          </div>
+          <div class="prediction-result" id="predictionResult"><span class="muted-text">Select a beat and run prediction.</span></div>
+          <div class="action-row">
+            <button class="btn primary" id="runSoftware">Run software prediction</button>
+            <button class="btn accent" id="runFpga">Use FPGA accelerator</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- VIEW 2 -->
+    <section class="view" id="view-nas">
+      <div class="section-title">
+        <div><span class="step">2</span><div><h2>NAS Re-train Configuration</h2><p>Load NAS configs directly from the project <code>configs</code> folder, edit values, then run or save as a new config.</p></div></div>
+      </div>
+
+      <article class="panel config-manager-panel">
+        <div class="panel-head">
+          <div>
+            <h3>Project configurations</h3>
+            <p>All <code>.json</code> files are read from:</p>
+            <small class="config-folder-path" id="configDirText">PROJECT_ROOT/configs</small>
+          </div>
+          <span class="badge soft" id="configReadonlyBadge">LOADING</span>
+        </div>
+        <div class="config-manager-row">
+          <label>Choose config
+            <select id="configSelect"></select>
+          </label>
+          <label>New config name
+            <input id="newConfigName" type="text" placeholder="config1 (automatic if empty)"/>
+          </label>
+          <button class="btn primary" id="saveConfigAsNew">Save as new config</button>
+        </div>
+        <div class="config-overview">
+          <div class="config-identity">
+            <div>
+              <span class="mini-label">Selected config</span>
+              <strong id="selectedConfigName">Loading...</strong>
+              <small id="selectedConfigFile">—</small>
+              <small class="config-file-path" id="selectedConfigFilePath">—</small>
+            </div>
+            <span class="config-hint">Run NAS uses the values currently shown below and stores a snapshot in the new run folder. Existing config files are never overwritten automatically.</span>
+          </div>
+
+          <div class="config-summary-grid" id="configSummary">
+            <div class="config-summary-card"><span>Evolution</span><div id="summarySearch">—</div></div>
+            <div class="config-summary-card"><span>Architecture space</span><div id="summaryArchitecture">—</div></div>
+            <div class="config-summary-card"><span>Training</span><div id="summaryTraining">—</div></div>
+            <div class="config-summary-card"><span>Constraints</span><div id="summaryConstraints">—</div></div>
+            <div class="config-summary-card"><span>Seeds</span><div id="summarySeeds" class="seed-chips">—</div></div>
+          </div>
+
+          <details class="config-json-details">
+            <summary>View raw JSON</summary>
+            <pre id="configPreview">Loading config...</pre>
+          </details>
+        </div>
+      </article>
+
+      <article class="panel search-space-card">
+        <div class="panel-head">
+          <div><h3>Architecture search space</h3><p>Select the kernel triplets and channel widths that NAS is allowed to use. The model remains fixed at 4 Mini-Inception blocks.</p></div>
+          <span class="badge soft">4 BLOCKS · C1 ≤ C2 ≤ C3 ≤ C4</span>
+        </div>
+        <div class="search-space-grid">
+          <div class="choice-group">
+            <div class="choice-head"><span>Kernel triplets</span><small>Select at least one</small></div>
+            <div class="choice-chips kernel-choice-list">
+              <label class="choice-chip"><input type="checkbox" name="kernel_choice" value="3,5,7" checked/><span>(3, 5, 7)</span></label>
+              <label class="choice-chip"><input type="checkbox" name="kernel_choice" value="3,5,9" checked/><span>(3, 5, 9)</span></label>
+              <label class="choice-chip"><input type="checkbox" name="kernel_choice" value="3,7,9" checked/><span>(3, 7, 9)</span></label>
+              <label class="choice-chip"><input type="checkbox" name="kernel_choice" value="5,7,9" checked/><span>(5, 7, 9)</span></label>
+            </div>
+          </div>
+          <div class="choice-group">
+            <div class="choice-head"><span>Channel widths</span><small>Select at least one</small></div>
+            <div class="choice-chips channel-choice-list">
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="4" checked/><span>4</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="8" checked/><span>8</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="12" checked/><span>12</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="16" checked/><span>16</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="20" checked/><span>20</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="24" checked/><span>24</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="28" checked/><span>28</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="32" checked/><span>32</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="36" checked/><span>36</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="40" checked/><span>40</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="44" checked/><span>44</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="48" checked/><span>48</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="52" checked/><span>52</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="56" checked/><span>56</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="60" checked/><span>60</span></label>
+              <label class="choice-chip compact"><input type="checkbox" name="channel_choice" value="64" checked/><span>64</span></label>
+              
+            </div>
+          </div>
+        </div>
+        <div class="search-space-footer">
+          <span>Estimated architecture count</span>
+          <strong id="searchSpaceCount">992,256</strong>
+          <small id="searchSpaceFormula">4 kernel choices⁴ × C(19,4) channel tuples</small>
+        </div>
+      </article>
+
+      <article class="panel config-card">
+        <form id="nasForm" class="config-grid">
+          <label>Population size<input name="population_size" type="number" min="2"/></label>
+          <label>Generations<input name="generations" type="number" min="1"/></label>
+          <label>Elite count<input name="elite_count" type="number" min="1"/></label>
+          <label>Tournament size<input name="tournament_size" type="number" min="2"/></label>
+          <label>Mutation rate<input name="mutation_rate" type="number" min="0" max="1" step="0.01"/></label>
+          <label>Crossover rate<input name="crossover_rate" type="number" min="0" max="1" step="0.01"/></label>
+          <label>Epochs / candidate<input name="epochs_per_candidate" type="number" min="1"/></label>
+          <label>Batch size<input name="batch_size" type="number" min="1"/></label>
+          <label>Early stop patience<input name="early_stop_patience" type="number" min="0"/></label>
+          <label>Learning rate<input name="learning_rate" type="number" step="0.0001"/></label>
+          <label>Max params<input name="max_params" type="number" min="1"/></label>
+          <label>Max MACs<input name="max_macs" type="number" min="1"/></label>
+          <label>Max memory (MB)<input name="max_memory_mb" type="number" step="0.001"/></label>
+          <label>F1 tolerance<input name="f1_tolerance" type="number" step="0.001"/></label>
+          <label>Proposal attempts<input name="max_proposal_attempts" type="number" min="1"/></label>
+          <label>Random seeds<input name="seeds" type="text" placeholder="42, 123, 2026"/></label>
+        </form>
+        <div class="config-actions">
+          <span class="muted-text">Run NAS always creates a new folder under <b>artifacts/nas_runs</b>. Use <b>Save as new config</b> when you want to keep edited values in <code>configs/</code>.</span>
+          <div class="action-row">
+            <button class="btn subtle" id="resetNas">Reload selected config</button>
+            <button class="btn danger" id="cancelNas" disabled>Cancel run</button>
+            <button class="btn accent" id="runNas">Run NAS</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel status-panel">
+        <div class="nas-status-head">
+          <div class="nas-lamp-wrap"><span class="nas-lamp idle" id="nasLamp"></span><div><h3>Training status</h3><p id="nasMessage">No NAS job has been started.</p></div></div>
+          <span class="badge" id="nasState">IDLE</span>
+        </div>
+        <div class="progress-track"><div id="nasProgressBar" class="progress-bar" style="width:0%"></div></div>
+        <div class="progress-meta">
+          <span id="nasProgressText">0%</span>
+          <span id="nasCandidateProgress">0 / 0 candidates</span>
+          <span id="nasSeedText">Seed: —</span>
+        </div>
+        <div class="run-info-grid">
+          <div><span>Config</span><b id="nasRunConfig">—</b></div>
+          <div><span>Output directory</span><b id="nasRunOutput">—</b></div>
+          <div><span>Started</span><b id="nasStarted">—</b></div>
+          <div><span>Finished</span><b id="nasFinished">—</b></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- VIEW 3 -->
+    <section class="view" id="view-fpga">
+      <div class="section-title">
+        <div><span class="step">3</span><div><h2>FPGA inference result</h2><p>Measured PYNQ-Z2 result for the selected beat and candidate.</p></div></div>
+        <button class="btn subtle" id="backToPrediction">Back to ECG</button>
+      </div>
+
+      <div class="fpga-layout">
+        <article class="panel fpga-context">
+          <div class="panel-head"><div><h3>Input context</h3><p id="fpgaContextText">No FPGA inference yet.</p></div></div>
+          <div class="beat-preview-wrap small"><svg id="fpgaBeatSvg" viewBox="0 0 620 220" preserveAspectRatio="none"></svg></div>
+          <div class="model-summary" id="fpgaModelSummary">Select a beat and use FPGA accelerator from the ECG view.</div>
+          <button class="btn accent full" id="rerunFpga">Run / measure again</button>
+        </article>
+
+        <article class="panel fpga-result-card">
+          <div class="panel-head"><div><h3>Board result</h3><p>Latency and resource values are shown only when returned by the real PYNQ endpoint.</p></div><span class="badge" id="fpgaBackendBadge">WAITING</span></div>
+          <div class="big-result"><span>Predicted class</span><strong id="fpgaPred">—</strong><small id="fpgaConfidence">Confidence —</small></div>
+          <div class="fpga-stats">
+            <div><span>Latency</span><b id="fpgaLatency">—</b></div>
+            <div><span>Throughput</span><b id="fpgaThroughput">—</b></div>
+            <div><span>LUT</span><b id="fpgaLut">—</b></div>
+            <div><span>FF</span><b id="fpgaFf">—</b></div>
+            <div><span>DSP</span><b id="fpgaDsp">—</b></div>
+            <div><span>BRAM</span><b id="fpgaBram">—</b></div>
+            <div><span>Clock</span><b id="fpgaClock">—</b></div>
+          </div>
+          <div class="note" id="fpgaNote">No board result yet.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- VIEW 4 -->
+    <section class="view" id="view-compare">
+      <div class="section-title">
+        <div><span class="step">4</span><div><h2>Compare all 4 candidate models</h2><p>Run exactly the same selected ECG beat through all four candidates.</p></div></div>
+      </div>
+
+      <article class="panel compare-context">
+        <div><b id="compareBeatTitle">No beat selected</b><span id="compareBeatSubtitle">Go to ECG Prediction and select a beat first.</span></div>
+        <div class="action-row">
+          <button class="btn primary" id="compareSoftware">Compare software</button>
+          <button class="btn accent" id="compareFpga">Compare FPGA</button>
+        </div>
+      </article>
+
+      <article class="panel compare-wave-panel">
+        <div class="panel-head"><div><h3>Selected ECG waveform</h3><p>The comparison below always uses this exact beat.</p></div><span class="badge soft" id="compareBeatBadge">—</span></div>
+        <div class="compare-wave-grid">
+          <div class="beat-preview-wrap compare-wave"><svg id="compareBeatSvg" viewBox="0 0 620 220" preserveAspectRatio="none"></svg></div>
+          <div class="compare-beat-details" id="compareBeatDetails">
+            <span>Record<b>—</b></span><span>Beat<b>—</b></span><span>Reference<b>—</b></span><span>Samples<b>320</b></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel compare-table-panel">
+        <div class="panel-head"><div><h3 id="compareTableTitle">Comparison table</h3><p>Each row uses the same selected ECG beat.</p></div><span class="badge" id="compareModeBadge">READY</span></div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Role</th><th>Candidate</th><th>Prediction</th><th>Confidence</th><th>Val F1</th><th>Params</th><th>MACs</th><th>Latency</th><th>Throughput</th><th>Status</th></tr>
+            </thead>
+            <tbody id="compareTable"><tr><td colspan="10" class="empty-cell">No comparison run yet.</td></tr></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
