@@ -100,3 +100,17 @@ artifacts/final_w4a4_p99_9/deployment_model/
 # =========================================================
 dashboard_full/__pycache__/
 dashboard_full/**/__pycache__/
+
+# Python cache
+__pycache__/
+*.pyc
+cache/
+
+# NAS / training generated outputs
+artifacts/dashboard_nas_runs/
+artifacts/evolutionary_nas_multiseed/
+artifacts/full_training/
+artifacts/static_space_scan/
+
+# Virtual environment
+.venv/
