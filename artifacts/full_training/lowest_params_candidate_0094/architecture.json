@@ -1,0 +1,26 @@
+{
+  "block1_kernels": [
+    3,
+    7,
+    9
+  ],
+  "block1_channels": 4,
+  "block2_kernels": [
+    3,
+    5,
+    9
+  ],
+  "block2_channels": 8,
+  "block3_kernels": [
+    3,
+    5,
+    9
+  ],
+  "block3_channels": 8,
+  "block4_kernels": [
+    3,
+    5,
+    9
+  ],
+  "block4_channels": 8
+}

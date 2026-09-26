@@ -1,0 +1,13 @@
+{
+  "candidate_id": 69,
+  "epochs_requested": 60,
+  "epochs_ran": 54,
+  "params": 9173,
+  "macs": 541144,
+  "memory_mb": 0.01953125,
+  "search_macro_f1_3epoch": 0.9494342934830329,
+  "val_accuracy": 0.9924050632911392,
+  "val_macro_f1": 0.9773341281867994,
+  "val_macro_precision": 0.9700024247254675,
+  "val_macro_recall": 0.985410396007615
+}

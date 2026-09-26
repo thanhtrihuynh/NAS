@@ -1,0 +1,22 @@
+{
+  "selected_candidate": 69,
+  "selection_method": "validation F1 within 0.005 of best, then lowest MACs and Params",
+  "full_training_epochs_max": 60,
+  "validation": {
+    "macro_f1": 0.9773341281867994,
+    "accuracy": 0.9924050632911392
+  },
+  "hardware_cost": {
+    "params": 9173,
+    "macs": 541144,
+    "memory_mb": 0.01953125
+  },
+  "test": {
+    "role": "balanced",
+    "candidate_id": 69,
+    "test_accuracy": 0.991538410287161,
+    "test_macro_f1": 0.9711012429252666,
+    "test_macro_precision": 0.9650148708544339,
+    "test_macro_recall": 0.977938953345902
+  }
+}

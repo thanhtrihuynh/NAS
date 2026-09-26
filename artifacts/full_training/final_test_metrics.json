@@ -1,0 +1,8 @@
+{
+  "role": "balanced",
+  "candidate_id": 69,
+  "test_accuracy": 0.991538410287161,
+  "test_macro_f1": 0.9711012429252666,
+  "test_macro_precision": 0.9650148708544339,
+  "test_macro_recall": 0.977938953345902
+}
