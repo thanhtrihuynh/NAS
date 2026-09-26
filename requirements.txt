@@ -1,6 +1,5 @@
-tensorflow
-numpy
-pandas
-scikit-learn
-matplotlib
-wfdb
+numpy>=1.26,<3
+pandas>=2.2
+scikit-learn>=1.5
+tensorflow>=2.16,<3
+wfdb>=4.1
